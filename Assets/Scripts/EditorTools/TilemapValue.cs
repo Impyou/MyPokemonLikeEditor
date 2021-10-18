@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TilemapValue : MonoBehaviour
 {
-    public enum TileType {NONE, WALL};
+    public enum TileType {NONE, WALL, GRASS};
 
     [HideInInspector] public int width, height;
     [HideInInspector] public TileType[] tileTypes;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class Character : MonoBehaviour
         }
 
         transform.position = GetPos();
+
     }
 
     Vector3 GetPos()
@@ -45,10 +47,17 @@ public class Character : MonoBehaviour
 
     private void Move(int x_dir, int y_dir)
     {
+        bool meetPokemon = false;
+
         if (tileMapValue.GetTile(x_pos + x_dir, y_pos + y_dir) == TilemapValue.TileType.WALL)
             return;
+        if (tileMapValue.GetTile(x_pos + x_dir, y_pos + y_dir) == TilemapValue.TileType.GRASS)
+            meetPokemon = true;
 
         x_pos += x_dir;
         y_pos += y_dir;
+
+        if(meetPokemon)
+            SceneManager.LoadScene("BattleScene");
     }
 }
