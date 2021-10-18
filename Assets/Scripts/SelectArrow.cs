@@ -12,14 +12,16 @@ public class SelectArrow : MonoBehaviour
 
     public List<Transform> posCursor;
     public enum Direction { RIGHT, LEFT, UP, DOWN };
+    public Action<int>[,] callbacks;
 
     public SelectArrow() : base()
     {
         cursor = new Vector2Int(0, 0);
     }
 
-    public void Init()
+    public void Init(Action<int>[,] callbacks)
     {
+        this.callbacks = callbacks;
         cursor = new Vector2Int(0, 0);
         transform.position = posCursor[GetActionIndex(cursor)].position;
     }
@@ -57,6 +59,11 @@ public class SelectArrow : MonoBehaviour
     public int GetActionIndex(Vector2Int targetCursor)
     {
         return targetCursor.x + targetCursor.y * 2;
+    }
+
+    public void Call()
+    {
+        callbacks[cursor.x, cursor.y].Invoke(GetActionIndex(cursor));
     }
 
 

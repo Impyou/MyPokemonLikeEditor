@@ -3,22 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleUI : MonoBehaviour
+public class BattleData : MonoBehaviour
 {
-    private static BattleUI __instance__ = null;
+    private static BattleData __instance__ = null;
 
     [Serializable]
     public class NameToObject : RotaryHeart.Lib.SerializableDictionary.SerializableDictionaryBase<string, GameObject> { }
     public NameToObject nameToGo;
 
-    [Serializable]
-    public class NameToSound : RotaryHeart.Lib.SerializableDictionary.SerializableDictionaryBase<string, AudioClip> { }
-    public NameToSound nameToSound;
-
     public void Awake()
     {
         if (__instance__ != null)
-            Debug.LogError("Multiple BattleUI instances !!!");
+            Debug.LogError("Multiple BattleData instances !!!");
 
         __instance__ = this;
     }
@@ -32,10 +28,4 @@ public class BattleUI : MonoBehaviour
     {
         return GetGameObject(name).GetComponent<T>();
     }
-
-    public static AudioClip Play(string name)
-    {
-        return __instance__.nameToSound[name];
-    }
-
 }

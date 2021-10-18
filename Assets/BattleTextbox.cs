@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBattleState  
+public class BattleTextbox : MonoBehaviour
 {
-    void Init();
-    void Update();
-
+    
 }

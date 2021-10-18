@@ -19,7 +19,6 @@ public class PokemonControllerPlayer : PokemonController
     {
         base.Start();
         moveDictionnary = Resources.Load<MoveDictionnary>("PokemonMove");
-        SetMoveName();
     }
 
     public void Update()
@@ -27,14 +26,4 @@ public class PokemonControllerPlayer : PokemonController
         
     }
 
-    void SetMoveName()
-    {
-        string[] moveNames = new string[currentPokemonMoveIds.Length];
-        foreach(var item in currentPokemonMoveIds.Select((value, i) => (value, i)))
-        {
-            var name = moveDictionnary.GetName(item.value);
-            moveNames[item.i] = name;
-        }
-        moveBar.SetMoves(moveNames);
-    }
 }

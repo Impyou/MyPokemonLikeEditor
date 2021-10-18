@@ -6,17 +6,15 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class MoveDictionnary : ScriptableObject
 {
-    [Serializable]
-    public struct Move
-    {
-        public string name;
-        public int damage;
-    }
-
     public Move[] moves;
 
     public string GetName(int moveId)
     {
         return moves[moveId].name;
+    }
+
+    public Move GetMove(int id)
+    {
+        return moves[id];
     }
 }

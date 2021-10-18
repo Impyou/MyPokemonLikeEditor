@@ -1,20 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectAction : IBattleState
+public class SelectAction : State
 {
-    public SelectArrowAction selectArrow;
+    public SelectArrow selectArrow;
 
     public SelectAction()
     {
         
     }
 
+    public void End()
+    {
+    }
+
     public void Init()
     {
-        selectArrow = BattleUI.Get<SelectArrowAction>("SelectArrow");
-        selectArrow.Init();
+        selectArrow = BattleUI.Get<SelectArrow>("SelectArrow");
+        Action<int> NoneCallback = (int i) => { };
+        Action<int> SelectMoveAction = (int i) => { StateStack.Push(new SelectMove()); };
+        selectArrow.Init(new Action<int>[,] { { SelectMoveAction, NoneCallback } , { NoneCallback, NoneCallback } });
     }
 
     public void Update()
@@ -37,11 +44,7 @@ public class SelectAction : IBattleState
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
-            var action = selectArrow.GetAction();
-            if (action == SelectArrowAction.Action.FIGHT)
-            {
-                BattleStateMachine.__instance__.SetState(new SelectMove());
-            }
+            selectArrow.Call();
         }
     }
 }

@@ -15,5 +15,5 @@ MonoBehaviour:
   moves:
   - name: Charge
     damage: 20
-  - name: FouetLiane
+  - name: Fouet Liane
     damage: 40
