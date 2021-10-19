@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PokemonControllerPlayer : PokemonController
 {
-    public SelectArrow selectArrow;
     public MoveBar moveBar;
 
     MoveDictionnary moveDictionnary;
@@ -15,10 +14,12 @@ public class PokemonControllerPlayer : PokemonController
         isFace = false;
     }
 
-    public void Start()
-    {
-        base.Start();
+    public new void Start()
+    {       
         moveDictionnary = Resources.Load<MoveDictionnary>("PokemonMove");
+        pokemonParty = MapUI.Get<Character>("Character").party;
+
+        base.Start();
     }
 
     public void Update()

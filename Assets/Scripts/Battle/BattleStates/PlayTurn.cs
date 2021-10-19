@@ -1,3 +1,4 @@
+using DigitalRuby.Tween;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ public class PlayTurn : State
     Move move;
     Action callback;
 
+    bool isPlaying = false;
+
     public PlayTurn(Pokemon attacker, Pokemon defender, int moveId, Action callback)
     {
         moveDictionnary = Resources.Load<MoveDictionnary>("PokemonMove");
@@ -23,6 +26,8 @@ public class PlayTurn : State
 
         move = moveDictionnary.GetMove(this.moveId);
         this.callback = callback;
+
+        
     }
 
     public void End()
@@ -33,16 +38,30 @@ public class PlayTurn : State
 
     public void Init()
     {
-        StateStack.Push(new Textbox($"bulbizare is using {moveDictionnary.GetName(moveId)}", Textbox.TargetTextbox.BATTLE_TEXTBOX));
+        if (attacker.getHp() == 0 || defender.getHp() == 0)
+            StateStack.Pop();
+        else
+            StateStack.Push(new Textbox($"{attacker.def.name} is using {moveDictionnary.GetName(moveId)}", Textbox.TargetTextbox.BATTLE_TEXTBOX));
     }
 
 
     public void Update()
     {
+        if (isPlaying)
+            return;
+
+        var startHp = defender.getHp();
         defender.inflictDamage(move.damage);
-        SoundManager.__instance__.Play(BattleUI.Play("DamageSound"));
-        defender.UpdateHpBar(defender.getHp());
-        StateStack.Pop();
+        var endHp = defender.getHp();
+        SoundManager.__instance__.PlaySoundEffect(BattleUI.GetSound("DamageSound"));
+        Action<ITween<float>> tweenHpCallback = (t) => { defender.UpdateHpBar((int)t.CurrentValue); };
+        defender.gameObject.Tween("hpDefend", startHp, endHp, 0.4f, TweenScaleFunctions.SineEaseIn, tweenHpCallback, (t) =>
+        {
+            StateStack.Pop();
+        });
+
+        isPlaying = true;
+        //defender.UpdateHpBar(defender.getHp());
         //var hpRate = defender.getHpRate();
     }
 }

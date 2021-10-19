@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct PokemonDef
+public class PokemonDef
 {
+    public string name;
     public int hpMax;
     public int hpCurrent;
-    
+
     public int attq;
     public int attqSpe;
     public int def;
@@ -19,8 +20,11 @@ public struct PokemonDef
     public string ability;
 
     public int[] moveIDs;
+    public Sprite backSprite;
+    public Sprite frontSprite;
 
-    public PokemonDef(int hpMax,
+    public PokemonDef(string name,
+                      int hpMax,
                       int hpCurrent,
                       int attq,
                       int attqSpe,
@@ -29,8 +33,12 @@ public struct PokemonDef
                       int speed,
                       string nature,
                       string ability,
-                      int[] moveIDs)
+                      int[] moveIDs,
+                      Sprite backSprite,
+                      Sprite frontSprite
+                      )
     {
+        this.name = name;
         this.hpMax = hpMax;
         this.hpCurrent = hpCurrent;
         this.attq = attq;
@@ -41,5 +49,28 @@ public struct PokemonDef
         this.nature = nature;
         this.ability = ability;
         this.moveIDs = moveIDs;
+        this.backSprite = backSprite;
+        this.frontSprite = frontSprite;
+    }
+
+    public PokemonDef(PokemonDef original) : this(original.name, 
+                                                  original.hpMax,
+                                                  original.hpCurrent,
+                                                  original.attq,
+                                                  original.attqSpe,
+                                                  original.def,
+                                                  original.defSpe,
+                                                  original.speed,
+                                                  original.nature,
+                                                  original.ability,
+                                                  original.moveIDs,
+                                                  original.backSprite,
+                                                  original.frontSprite)
+    {
+
+    }
+    public void FullHeal()
+    {
+        hpCurrent = hpMax;
     }
 }

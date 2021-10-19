@@ -76,6 +76,12 @@ public class HpUX : MonoBehaviour
                         );
     }
 
+    public void ChangeHp(int newHp, int maxHp)
+    {
+        totalHp = maxHp;
+        ChangeHp(newHp);
+    }
+
     public int ComputeHpRate()
     {
         return currentHp * 100 / totalHp;

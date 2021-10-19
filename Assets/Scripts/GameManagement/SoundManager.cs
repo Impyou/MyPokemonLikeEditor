@@ -5,7 +5,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager __instance__;
-    public AudioSource audioSource;
+    public AudioSource soundEffectSource;
+    public AudioSource musicSource;
     public void Start()
     {
         if (__instance__ != null)
@@ -14,10 +15,16 @@ public class SoundManager : MonoBehaviour
         __instance__ = this;
     }
 
-    public void Play(AudioClip clip)
+    public void PlaySoundEffect(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        soundEffectSource.clip = clip;
+        soundEffectSource.Play();
+    }
+
+    public void PlayMusic(AudioClip music)
+    {
+        musicSource.clip = music;
+        musicSource.Play();
     }
 
 

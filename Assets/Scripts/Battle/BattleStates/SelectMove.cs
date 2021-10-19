@@ -27,7 +27,8 @@ public class SelectMove : State
             AttackCallbacks[i] = (int cursorIndex) => {
                 actionBar.SetActive(false);
                 StateStack.Pop();
-                if(cursorIndex < pokemonAlly.GetMoveIds().Length)
+                StateStack.Pop();
+                if (cursorIndex < pokemonAlly.GetMoveIds().Length)
                     PlayMove(pokemonAlly.GetMoveIds()[cursorIndex], actionBar);
             };
         }
@@ -39,13 +40,12 @@ public class SelectMove : State
     {
         var pokemonAlly = BattleUI.Get<Pokemon>("PokemonAlly");
         var pokemonOpponent = BattleUI.Get<Pokemon>("PokemonOpponent");
-        IAMoveSelection IA_moveSelection = new IAMoveSelection(pokemonAlly, pokemonOpponent);
+        IAMoveSelection IA_moveSelection = new IAMoveSelection(pokemonOpponent, pokemonAlly);
         int IA_moveId = IA_moveSelection.ChooseAttack();
         
 
         StateStack.Push(new PlayTurn(pokemonAlly, pokemonOpponent, moveId,  () => {
-            StateStack.Push(new PlayTurn(pokemonOpponent, pokemonAlly, IA_moveId, () =>
-            { actionBar.SetActive(true); })); 
+            StateStack.Push(new PlayTurn(pokemonOpponent, pokemonAlly, IA_moveId, () => { })); 
         }));
     }
 

@@ -18,10 +18,18 @@ public class SelectAction : State
 
     public void Init()
     {
+        var actionBar = BattleUI.GetGameObject("ActionBar");
+        actionBar.SetActive(true);
+
         selectArrow = BattleUI.Get<SelectArrow>("SelectArrow");
         Action<int> NoneCallback = (int i) => { };
         Action<int> SelectMoveAction = (int i) => { StateStack.Push(new SelectMove()); };
-        selectArrow.Init(new Action<int>[,] { { SelectMoveAction, NoneCallback } , { NoneCallback, NoneCallback } });
+        Action<int> RunCallback = (int i) => {
+            actionBar.SetActive(false);
+            BattleState.GetInstance().info.run = true;
+            StateStack.Pop();
+        };
+        selectArrow.Init(new Action<int>[,] { { SelectMoveAction, NoneCallback } , { NoneCallback, RunCallback } });
     }
 
     public void Update()

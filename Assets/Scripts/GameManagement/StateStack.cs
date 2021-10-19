@@ -28,7 +28,7 @@ public class StateStack : MonoBehaviour
 
     public void Start()
     {
-        StateStack.Push(new SelectAction());
+        StateStack.Push(new MovingState());
     }
     public void _Pop()
     {

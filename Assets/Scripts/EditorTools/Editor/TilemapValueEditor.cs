@@ -8,10 +8,22 @@ public class TilemapValueEditor : Editor
 {
     public float sizeBlock = 0.5f;
     int tmp_width, tmp_height;
-    TilemapValue.TileType newType = TilemapValue.TileType.WALL;
+    TilemapValue.TileType newType = TilemapValue.TileType.GRASS;
+    GUIStyle guiStyle;
+
+    private bool isInit = false;
+
+    private void Init()
+    {
+        guiStyle = new GUIStyle();
+        guiStyle.normal.textColor = Color.black;
+        isInit = true;
+    }
+
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+
         tmp_width = EditorGUILayout.IntField("Width", tmp_width);
         tmp_height = EditorGUILayout.IntField("Height", tmp_height);
 
@@ -33,6 +45,9 @@ public class TilemapValueEditor : Editor
 
     private void OnSceneGUI()
     {
+        if (!isInit)
+            Init();
+
         ShowLabel();
         
         /* TODO : Fix issue y position */
@@ -47,8 +62,8 @@ public class TilemapValueEditor : Editor
         var e = Event.current;
         if(e.type == EventType.MouseDown && e.button == 0)
         {
-            Debug.Log("Click");
             var tileMapValue = (TilemapValue)target;
+            Debug.Log($"coord {x} {y}");
             tileMapValue.SetTile(x, y, newType);
         }
 

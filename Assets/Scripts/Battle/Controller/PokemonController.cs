@@ -8,8 +8,17 @@ public class PokemonController : MonoBehaviour
     protected bool isFace;
     protected int[] currentPokemonMoveIds;
 
+    public PokemonParty pokemonParty;
+
     protected void Start()
     {
+        
+    }
+
+    public void SetPokemon(int partyId)
+    {
+        pokemon.def = pokemonParty.party[partyId];
+        pokemon.ResetHpBar();
         currentPokemonMoveIds = pokemon.GetMoveIds();
         SetPokemonSprite();
     }
@@ -17,7 +26,7 @@ public class PokemonController : MonoBehaviour
     public void SetPokemonSprite()
     {
         var spriteRenderer = pokemon.GetComponent<SpriteRenderer>();
-        var targetSprite = isFace ? pokemon.faceSprite : pokemon.backSprite;
+        var targetSprite = isFace ? pokemon.def.frontSprite : pokemon.def.backSprite;
         spriteRenderer.sprite = targetSprite; 
     }
 

@@ -8,4 +8,14 @@ public class PokemonControllerIA : PokemonController
     {
         isFace = true;
     }
+
+    public new void Start()
+    {
+        pokemonParty = new PokemonParty
+        {
+            party = new PokemonDef[] { MapUI.Get<WildPokemonInfo>("WildPokemonInfo").PickPokemon() }
+        };
+
+        base.Start();
+    }
 }

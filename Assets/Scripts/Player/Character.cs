@@ -7,57 +7,70 @@ public class Character : MonoBehaviour
 {
     // Start is called before the first frame update
     public TilemapValue tileMapValue;
-    public int x_pos, y_pos;
+    public Vector2Int pos;
     public float block_size = 0.5f;
+
+    public PokemonParty party;
+
     void Start()
     {
-        x_pos = 1;
-        y_pos = 1;
-        Debug.Log(y_pos);
+        pos = Vector2Int.one;
     }
 
     // Update is called once per frame
-    void Update()
+    public void MoveUpdate()
     {
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Move(-1, 0);
+            Move(new Vector2Int(-1, 0));
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Move(1, 0);
+            Move(new Vector2Int(1, 0));
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Move(0, 1);
+            Move(new Vector2Int(0, 1));
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Move(0, -1);
+            Move(new Vector2Int(0, -1));
+        }else if(Input.GetKeyDown(KeyCode.P))
+        {
+            StateStack.Push(new Textbox("Your party is getting healed !!!", Textbox.TargetTextbox.WORLD_TEXTBOX, () => { HealParty(); }));
         }
 
         transform.position = GetPos();
 
     }
 
-    Vector3 GetPos()
+    private void HealParty()
     {
-        return new Vector3(x_pos * block_size + block_size/2f, y_pos * block_size - block_size / 2f, 0f);
+        party.HealParty();
     }
 
-    private void Move(int x_dir, int y_dir)
+    Vector3 GetPos()
+    {
+        return new Vector3(pos.x * block_size + block_size/2f, pos.y * block_size - block_size / 2f, 0f);
+    }
+
+    private void Move(Vector2Int dir)
     {
         bool meetPokemon = false;
 
-        if (tileMapValue.GetTile(x_pos + x_dir, y_pos + y_dir) == TilemapValue.TileType.WALL)
+        if (tileMapValue.GetTile(pos.x + dir.x, pos.y + dir.y) == TilemapValue.TileType.WALL)
             return;
-        if (tileMapValue.GetTile(x_pos + x_dir, y_pos + y_dir) == TilemapValue.TileType.GRASS)
+        if (tileMapValue.GetTile(pos.x + dir.x, pos.y + dir.y) == TilemapValue.TileType.GRASS &&
+            Random.Range(0, 10) == 0)
+        {
             meetPokemon = true;
+        }
 
-        x_pos += x_dir;
-        y_pos += y_dir;
+        pos += dir; 
 
-        if(meetPokemon)
-            SceneManager.LoadScene("BattleScene");
+        if (meetPokemon)
+        {
+            StateStack.Push(new StartingBattle());
+        }
     }
 }

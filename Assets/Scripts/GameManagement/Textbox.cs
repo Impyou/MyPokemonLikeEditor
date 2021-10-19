@@ -7,7 +7,7 @@ public class Textbox : State
 {
     private string text;
     private Action callback;
-    public enum TargetTextbox { BATTLE_TEXTBOX };
+    public enum TargetTextbox { BATTLE_TEXTBOX , WORLD_TEXTBOX};
     private TargetTextbox targetTextbox;
 
     private GameObject textObject;
@@ -36,6 +36,10 @@ public class Textbox : State
         {
             case TargetTextbox.BATTLE_TEXTBOX:
                 textObject = BattleUI.GetGameObject("BattleTextbox");
+                textMesh = textObject.GetComponentInChildren<TextMesh>();
+                break;
+            case TargetTextbox.WORLD_TEXTBOX:
+                textObject = MapUI.GetGameObject("WorldTextbox");
                 textMesh = textObject.GetComponentInChildren<TextMesh>();
                 break;
         }
