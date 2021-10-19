@@ -12,8 +12,8 @@ public class MovingState : State
 
     public void Init()
     {
-        SoundManager.__instance__.PlayMusic(MapUI.GetSound("RoadMusic"));
-        character = MapUI.Get<Character>("Character");
+        SoundManager.__instance__.PlayMusic(WorldUI.GetSound("RoadMusic"));
+        character = WorldUI.Get<Character>("Character");
     }
 
     public void Update()

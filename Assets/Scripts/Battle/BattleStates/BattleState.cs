@@ -38,7 +38,9 @@ public class BattleState : State
         __instance__ = this;
         StateStack.Push(new SelectAction());
 
-        map = MapUI.GetGameObject("Map");
+        map = WorldUI.GetGameObject("Map");
+
+        //TODO : remove pokemon ref and pass through controller only;
         pokemonAlly = BattleUI.Get<Pokemon>("PokemonAlly");
         pokemonOpponent = BattleUI.Get<Pokemon>("PokemonOpponent");
 
@@ -57,7 +59,7 @@ public class BattleState : State
         {
             map.SetActive(true);
             StateStack.Pop();
-            SoundManager.__instance__.PlayMusic(MapUI.GetSound("RoadMusic"));
+            SoundManager.__instance__.PlayMusic(WorldUI.GetSound("RoadMusic"));
         }
     }
 
@@ -82,7 +84,7 @@ public class BattleState : State
         }
         else if (info.die)
         {
-            StateStack.Push(new Textbox("You've been extreminated !", Textbox.TargetTextbox.BATTLE_TEXTBOX));
+            StateStack.Push(new Textbox("You've been exterminated !", Textbox.TargetTextbox.BATTLE_TEXTBOX));
             quitBattle = true;
             return;
         }

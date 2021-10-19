@@ -13,7 +13,7 @@ public class PokemonControllerIA : PokemonController
     {
         pokemonParty = new PokemonParty
         {
-            party = new PokemonDef[] { MapUI.Get<WildPokemonInfo>("WildPokemonInfo").PickPokemon() }
+            party = new PokemonDef[] { WorldUI.Get<WildPokemonInfo>("WildPokemonInfo").PickPokemon() }
         };
 
         base.Start();

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapUI : MonoBehaviour
+public class WorldUI : MonoBehaviour
 {
-    private static MapUI __instance__ = null;
+    private static WorldUI __instance__ = null;
 
     [Serializable]
     public class NameToObject : RotaryHeart.Lib.SerializableDictionary.SerializableDictionaryBase<string, GameObject> { }

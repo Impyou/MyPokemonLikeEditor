@@ -16,8 +16,8 @@ public class StartingBattle : State
     public void Init()
     {
         loadingScene = SceneManager.LoadSceneAsync("BattleScene", LoadSceneMode.Additive);
-        map = MapUI.GetGameObject("Map");
-        SoundManager.__instance__.PlayMusic(MapUI.GetSound("BattleMusic"));
+        map = WorldUI.GetGameObject("Map");
+        SoundManager.__instance__.PlayMusic(WorldUI.GetSound("BattleMusic"));
     }
 
     public void Update()

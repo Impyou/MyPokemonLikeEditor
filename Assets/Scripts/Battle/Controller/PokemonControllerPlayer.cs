@@ -17,7 +17,7 @@ public class PokemonControllerPlayer : PokemonController
     public new void Start()
     {       
         moveDictionnary = Resources.Load<MoveDictionnary>("PokemonMove");
-        pokemonParty = MapUI.Get<Character>("Character").party;
+        pokemonParty = WorldUI.Get<Character>("Character").party;
 
         base.Start();
     }

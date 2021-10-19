@@ -39,7 +39,7 @@ public class Textbox : State
                 textMesh = textObject.GetComponentInChildren<TextMesh>();
                 break;
             case TargetTextbox.WORLD_TEXTBOX:
-                textObject = MapUI.GetGameObject("WorldTextbox");
+                textObject = WorldUI.GetGameObject("WorldTextbox");
                 textMesh = textObject.GetComponentInChildren<TextMesh>();
                 break;
         }
