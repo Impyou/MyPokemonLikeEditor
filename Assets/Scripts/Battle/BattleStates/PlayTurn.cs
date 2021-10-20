@@ -54,6 +54,7 @@ public class PlayTurn : State
         defender.inflictDamage(move.damage);
         var endHp = defender.getHp();
         SoundManager.__instance__.PlaySoundEffect(BattleUI.GetSound("DamageSound"));
+        // TODO : Maybe use a factory
         Action<ITween<float>> tweenHpCallback = (t) => { defender.UpdateHpBar((int)t.CurrentValue); };
         defender.gameObject.Tween("hpDefend", startHp, endHp, 0.4f, TweenScaleFunctions.SineEaseIn, tweenHpCallback, (t) =>
         {

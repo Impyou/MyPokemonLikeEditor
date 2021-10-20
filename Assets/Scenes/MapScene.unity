@@ -7012,7 +7012,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691436463}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -7148,7 +7148,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691436463}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 10642b306f4f1e54d9360264e85e1476, type: 3}
@@ -7378,6 +7378,32 @@ MonoBehaviour:
       moveIDs: 0000000001000000
       backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
       frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
+  moveAnimationTime: 0.15
+  playerAnimationDirs:
+  - name: DownAnim
+    sprites:
+    - {fileID: 2330740943106486305, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -446484710556046686, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -2851484673385194593, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: 5364837621150289796, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+  - name: LeftAnim
+    sprites:
+    - {fileID: 5410765284496069531, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -277943040923079460, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -3905021193630295495, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -6363041418515745327, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+  - name: UpAnim
+    sprites:
+    - {fileID: 5331839288693161429, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -4858152287193354177, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: 4688607615261665370, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -3525298241694707076, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+  - name: RightAnim
+    sprites:
+    - {fileID: 3015893167417317408, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -5846985832487976875, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -2608550780262734131, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
+    - {fileID: -306728390506707862, guid: 8d6980a1fdc934c4baebd6f2431bd059, type: 3}
 --- !u!212 &819858400
 SpriteRenderer:
   m_ObjectHideFlags: 0
