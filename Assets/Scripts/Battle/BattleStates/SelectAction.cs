@@ -19,9 +19,11 @@ public class SelectAction : State
     {
         var actionBar = BattleUI.GetGameObject("ActionBar");
         var player = BattleUI.Get<PokemonController>("ControllerAlly");
+        var opponent = BattleUI.Get<PokemonController>("ControllerOpponent");
         actionBar.SetActive(true);
 
         selectArrow = BattleUI.Get<SelectArrow>("SelectArrow");
+
         Action<int> NoneCallback = (int i) => { };
         Action<int> SelectMoveAction = (int i) => { StateStack.Push(new SelectMove()); };
         Action<int> RunCallback = (int i) => {
@@ -29,7 +31,13 @@ public class SelectAction : State
             BattleState.GetInstance().info.run = true;
             StateStack.Pop();
         };
-        Action<int> ChangePokemon = (int i) => { player.ChangePokemonToNext(); };
+        Action<int> ChangePokemon = (int i) => {
+                actionBar.SetActive(false);
+                StateStack.Pop();
+                StateStack.Push(new ChangePokemon(player, player.GetNextAlivePokemonIndex(), () => {
+                    StateStack.Push(new PlayTurn(opponent.pokemon, player.pokemon, 0, () => { }));
+                }));
+        };
         selectArrow.Init(new Action<int>[,] { { SelectMoveAction, ChangePokemon } , { NoneCallback, RunCallback } });
     }
 

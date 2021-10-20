@@ -20,4 +20,14 @@ public class PokemonParty
     {
         return party.Length;
     }
+
+    public bool IsPartyKO()
+    {
+        foreach (var pokemon in party)
+        {
+            if (pokemon.hpCurrent != 0)
+                return false;
+        }
+        return true;
+    }
 }

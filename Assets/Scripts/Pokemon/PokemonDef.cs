@@ -73,4 +73,9 @@ public class PokemonDef
     {
         hpCurrent = hpMax;
     }
+
+    public bool IsKO()
+    {
+        return hpCurrent == 0;
+    }
 }

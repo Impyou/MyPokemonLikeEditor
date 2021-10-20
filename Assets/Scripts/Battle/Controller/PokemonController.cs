@@ -9,7 +9,7 @@ public class PokemonController : MonoBehaviour
     protected int[] currentPokemonMoveIds;
 
     public PokemonParty pokemonParty;
-    public int currentPokemonId;
+    public int currentPokemonIndex = -1;
 
     protected void Start()
     {
@@ -18,16 +18,17 @@ public class PokemonController : MonoBehaviour
 
     public void SetPokemon(int partyId)
     {
+        currentPokemonIndex = partyId;
         pokemon.def = pokemonParty.party[partyId];
         pokemon.ResetHpBar();
         currentPokemonMoveIds = pokemon.GetMoveIds();
         SetPokemonSprite();
     }
-
+        
     public void ChangePokemonToNext()
     {
-        currentPokemonId = (currentPokemonId + 1) % pokemonParty.GetLength();
-        SetPokemon(currentPokemonId);
+        currentPokemonIndex = (currentPokemonIndex + 1) % pokemonParty.GetLength();
+        SetPokemon(currentPokemonIndex);
     }
 
     public void SetPokemonSprite()
@@ -36,5 +37,39 @@ public class PokemonController : MonoBehaviour
         var targetSprite = isFace ? pokemon.def.frontSprite : pokemon.def.backSprite;
         spriteRenderer.sprite = targetSprite; 
     }
+
+    public void SetNextAlivePokemon()
+    {
+        SetPokemon(GetNextAlivePokemonIndex());
+    }
+
+    public int GetNextAlivePokemonIndex()
+    {
+        for (int i = (currentPokemonIndex + 1) % pokemonParty.GetLength(); ; i = (i + 1) % pokemonParty.GetLength())
+        {
+            var pokemonDef = pokemonParty.party[i];
+            if (!pokemonDef.IsKO())
+                return i;
+        }
+    }
+
+    public bool IsKO()
+    {
+        return pokemonParty.IsPartyKO();
+    }
+
+    public bool IsCurrentPokemonKO()
+    {
+        return pokemon.IsKO();
+    }
+
+    public int GetCurrentPokemonIndex() => currentPokemonIndex;
+
+    public string GetName(int index)
+    {
+        return pokemonParty.party[index].name;
+    }
+
+
 
 }

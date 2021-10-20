@@ -38,7 +38,7 @@ public class PlayTurn : State
 
     public void Init()
     {
-        if (attacker.getHp() == 0 || defender.getHp() == 0)
+        if (attacker.GetHp() == 0 || defender.GetHp() == 0)
             StateStack.Pop();
         else
             StateStack.Push(new Textbox($"{attacker.def.name} is using {moveDictionnary.GetName(moveId)}", Textbox.TargetTextbox.BATTLE_TEXTBOX));
@@ -50,9 +50,9 @@ public class PlayTurn : State
         if (isPlaying)
             return;
 
-        var startHp = defender.getHp();
+        var startHp = defender.GetHp();
         defender.inflictDamage(move.damage);
-        var endHp = defender.getHp();
+        var endHp = defender.GetHp();
         SoundManager.__instance__.PlaySoundEffect(BattleUI.GetSound("DamageSound"));
         // TODO : Maybe use a factory
         Action<ITween<float>> tweenHpCallback = (t) => { defender.UpdateHpBar((int)t.CurrentValue); };
@@ -62,7 +62,5 @@ public class PlayTurn : State
         });
 
         isPlaying = true;
-        //defender.UpdateHpBar(defender.getHp());
-        //var hpRate = defender.getHpRate();
     }
 }

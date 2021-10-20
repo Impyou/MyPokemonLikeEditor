@@ -17,7 +17,6 @@ public class BattleState : State
 
     public Info info;
     public bool quitBattle;
-    private Pokemon pokemonAlly, pokemonOpponent;
     private PokemonController controllerAlly, controllerOpponent;
 
     public static BattleState GetInstance()
@@ -40,15 +39,11 @@ public class BattleState : State
 
         map = WorldUI.GetGameObject("Map");
 
-        //TODO : remove pokemon ref and pass through controller only;
-        pokemonAlly = BattleUI.Get<Pokemon>("PokemonAlly");
-        pokemonOpponent = BattleUI.Get<Pokemon>("PokemonOpponent");
-
         controllerAlly = BattleUI.Get<PokemonController>("ControllerAlly");
         controllerOpponent = BattleUI.Get<PokemonController>("ControllerOpponent");
 
-        controllerAlly.SetPokemon(0);
-        controllerOpponent.SetPokemon(0);
+        controllerAlly.SetNextAlivePokemon();
+        controllerOpponent.SetNextAlivePokemon();
     }
 
     public void UpdateQuitBattle()
@@ -71,9 +66,16 @@ public class BattleState : State
             return;
         }
 
-        if (pokemonAlly.getHp() == 0)
-            info.die = true;
-        else if (pokemonOpponent.getHp() == 0)
+        if (controllerAlly.IsCurrentPokemonKO())
+        {
+            if(controllerAlly.IsKO())
+                info.die = true;
+            else
+            {
+                controllerAlly.SetNextAlivePokemon();
+            }
+        }
+        else if (controllerOpponent.IsKO())
             info.kill = true;
 
         if (info.run)

@@ -31,7 +31,7 @@ public class Pokemon : MonoBehaviour
         HpBar.UpdateUX();
     }
 
-    public int getHp()
+    public int GetHp()
     {
         return def.hpCurrent;
     }
@@ -39,5 +39,10 @@ public class Pokemon : MonoBehaviour
     public int getHpRate()
     {
         return def.hpCurrent * 100 / def.hpMax;
+    }
+
+    public bool IsKO()
+    {
+        return GetHp() == 0;
     }
 }

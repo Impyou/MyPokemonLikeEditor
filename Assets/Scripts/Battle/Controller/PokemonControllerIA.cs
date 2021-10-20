@@ -18,4 +18,8 @@ public class PokemonControllerIA : PokemonController
 
         base.Start();
     }
+
+    public void SelectMove()
+    {
+    }
 }

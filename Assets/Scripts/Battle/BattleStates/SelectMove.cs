@@ -29,14 +29,14 @@ public class SelectMove : State
                 StateStack.Pop();
                 StateStack.Pop();
                 if (cursorIndex < pokemonAlly.GetMoveIds().Length)
-                    PlayMove(pokemonAlly.GetMoveIds()[cursorIndex], actionBar);
+                    PlayMove(pokemonAlly.GetMoveIds()[cursorIndex]);
             };
         }
         
         selectArrowMove.Init(new Action<int>[,] { { AttackCallbacks[0], AttackCallbacks[2] }, { AttackCallbacks[1], AttackCallbacks[3] } });
     }
 
-    public void PlayMove(int moveId, GameObject actionBar)
+    public void PlayMove(int moveId)
     {
         var pokemonAlly = BattleUI.Get<Pokemon>("PokemonAlly");
         var pokemonOpponent = BattleUI.Get<Pokemon>("PokemonOpponent");
