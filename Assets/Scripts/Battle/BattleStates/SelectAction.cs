@@ -6,7 +6,6 @@ using UnityEngine;
 public class SelectAction : State
 {
     public SelectArrow selectArrow;
-
     public SelectAction()
     {
         
@@ -19,6 +18,7 @@ public class SelectAction : State
     public void Init()
     {
         var actionBar = BattleUI.GetGameObject("ActionBar");
+        var player = BattleUI.Get<PokemonController>("ControllerAlly");
         actionBar.SetActive(true);
 
         selectArrow = BattleUI.Get<SelectArrow>("SelectArrow");
@@ -29,7 +29,8 @@ public class SelectAction : State
             BattleState.GetInstance().info.run = true;
             StateStack.Pop();
         };
-        selectArrow.Init(new Action<int>[,] { { SelectMoveAction, NoneCallback } , { NoneCallback, RunCallback } });
+        Action<int> ChangePokemon = (int i) => { player.ChangePokemonToNext(); };
+        selectArrow.Init(new Action<int>[,] { { SelectMoveAction, ChangePokemon } , { NoneCallback, RunCallback } });
     }
 
     public void Update()

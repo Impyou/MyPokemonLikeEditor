@@ -9,6 +9,7 @@ public class PokemonController : MonoBehaviour
     protected int[] currentPokemonMoveIds;
 
     public PokemonParty pokemonParty;
+    public int currentPokemonId;
 
     protected void Start()
     {
@@ -21,6 +22,12 @@ public class PokemonController : MonoBehaviour
         pokemon.ResetHpBar();
         currentPokemonMoveIds = pokemon.GetMoveIds();
         SetPokemonSprite();
+    }
+
+    public void ChangePokemonToNext()
+    {
+        currentPokemonId = (currentPokemonId + 1) % pokemonParty.GetLength();
+        SetPokemon(currentPokemonId);
     }
 
     public void SetPokemonSprite()

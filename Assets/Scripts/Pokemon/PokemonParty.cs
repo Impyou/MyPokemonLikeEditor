@@ -15,4 +15,9 @@ public class PokemonParty
             pokemon.FullHeal();
         }
     }
+
+    public int GetLength()
+    {
+        return party.Length;
+    }
 }
