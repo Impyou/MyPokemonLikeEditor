@@ -72,7 +72,8 @@ public class BattleState : State
                 info.die = true;
             else
             {
-                controllerAlly.SetNextAlivePokemon();
+                StateStack.Push(new ChangePokemon(controllerAlly, controllerAlly.GetNextAlivePokemonIndex(), () => { }));
+                return;
             }
         }
         else if (controllerOpponent.IsKO())
