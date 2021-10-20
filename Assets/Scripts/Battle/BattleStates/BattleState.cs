@@ -65,7 +65,11 @@ public class BattleState : State
             UpdateQuitBattle();
             return;
         }
-
+        if(controllerOpponent.pokemonParty.IsEmpty())
+        {
+            quitBattle = true;
+            return;
+        }
         if (controllerAlly.IsCurrentPokemonKO())
         {
             if(controllerAlly.IsKO())

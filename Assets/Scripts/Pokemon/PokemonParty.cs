@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PokemonParty
 {
-    public PokemonDef[] party;
+    public List<PokemonDef> party;
 
     public void HealParty()
     {
@@ -18,7 +18,7 @@ public class PokemonParty
 
     public int GetLength()
     {
-        return party.Length;
+        return party.Count;
     }
 
     public bool IsPartyKO()
@@ -29,5 +29,27 @@ public class PokemonParty
                 return false;
         }
         return true;
+    }
+
+    public void AddPokemon(PokemonDef pokemonDef)
+    {
+        party.Add(pokemonDef);
+    }
+
+    public PokemonDef RemovePokemon(int index)
+    {
+        var pokemonDef = party[index];
+        party.RemoveAt(index);
+        return pokemonDef;
+    }
+
+    public void StealFirst(PokemonParty partyToSteal)
+    {
+        AddPokemon(partyToSteal.RemovePokemon(0));
+    }
+
+    public bool IsEmpty()
+    {
+        return GetLength() == 0;
     }
 }

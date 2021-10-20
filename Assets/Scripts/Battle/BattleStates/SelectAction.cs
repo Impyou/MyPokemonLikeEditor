@@ -31,6 +31,15 @@ public class SelectAction : State
             BattleState.GetInstance().info.run = true;
             StateStack.Pop();
         };
+        Action<int> CatchCallback = (int i) =>
+        {
+            actionBar.SetActive(false);
+            StateStack.Pop();
+            StateStack.Push(new CatchingState(0.5f, player, opponent, callbackOnSuccess: () => { }, callbackOnFail: () =>
+              {
+                  StateStack.Push(new PlayTurn(opponent.pokemon, player.pokemon, 0, () => { }));
+              }));
+        };
         Action<int> ChangePokemon = (int i) => {
                 actionBar.SetActive(false);
                 StateStack.Pop();
@@ -38,7 +47,7 @@ public class SelectAction : State
                     StateStack.Push(new PlayTurn(opponent.pokemon, player.pokemon, 0, () => { }));
                 }));
         };
-        selectArrow.Init(new Action<int>[,] { { SelectMoveAction, ChangePokemon } , { NoneCallback, RunCallback } });
+        selectArrow.Init(new Action<int>[,] { { SelectMoveAction, ChangePokemon } , { CatchCallback, RunCallback } });
     }
 
     public void Update()

@@ -53,6 +53,11 @@ public class PokemonController : MonoBehaviour
         }
     }
 
+    public void CatchOpponentPokemon(PokemonController target)
+    {
+        pokemonParty.StealFirst(target.pokemonParty);
+    }
+
     public bool IsKO()
     {
         return pokemonParty.IsPartyKO();
