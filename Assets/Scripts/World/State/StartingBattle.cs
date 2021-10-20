@@ -7,6 +7,7 @@ public class StartingBattle : State
 {
     AsyncOperation loadingScene;
     GameObject map;
+    BattleStartAnimation battleStartAnimation;
 
     public void End()
     {
@@ -15,18 +16,25 @@ public class StartingBattle : State
 
     public void Init()
     {
-        loadingScene = SceneManager.LoadSceneAsync("BattleScene", LoadSceneMode.Additive);
         map = WorldUI.GetGameObject("Map");
+        battleStartAnimation = WorldUI.Get<BattleStartAnimation>("BattleStartAnimator");
         SoundManager.__instance__.PlayMusic(WorldUI.GetSound("BattleMusic"));
+        battleStartAnimation.StartAnimate((t) => { LoadBattleScene(); });
     }
 
+    public void LoadBattleScene()
+    {
+        loadingScene = SceneManager.LoadSceneAsync("BattleScene", LoadSceneMode.Additive);
+    }
     public void Update()
     {
-        if(loadingScene.isDone)
+        if(loadingScene != null && loadingScene.isDone)
         {
             StateStack.Pop();
             StateStack.Push(new BattleState());
             map.SetActive(false);
+
+            battleStartAnimation.EndAnimate();
         }
     }
 }
