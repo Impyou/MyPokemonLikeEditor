@@ -11,6 +11,7 @@ public class PokemonDef
     public int level;
     public int currentExp;
     public int totalExpToLevelUp;
+    public int expCurrentLevel;
 
     public int hpCurrent;
 
@@ -86,6 +87,7 @@ public class PokemonDef
         currentStats.defSpe = ComputeIndividualStat(defBase.v.defSpe, effortValueStats.defSpe, individualValueStats.defSpe);
         currentStats.speed = ComputeIndividualStat(defBase.v.speed, effortValueStats.speed, individualValueStats.speed);
         totalExpToLevelUp = defBase.GetNeededExpLevel(level + 1);
+        expCurrentLevel = defBase.GetNeededExpLevel(level);
     }
 
 

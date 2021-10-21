@@ -6,6 +6,7 @@ public class Pokemon : MonoBehaviour
 {
     public PokemonDef def;
     public HpUX HpBar;
+    public HpUX ExpBar;
 
     public int[] GetMoveIds()
     {
@@ -25,11 +26,30 @@ public class Pokemon : MonoBehaviour
         HpBar.UpdateUX();
     }
 
-    public void ResetHpBar()
+    public void ResetUX()
     {
         HpBar.totalHp = def.currentStats.hp;
         HpBar.currentHp = def.hpCurrent;
         HpBar.UpdateUX();
+
+        SetExpBarValues(def.expCurrentLevel, def.totalExpToLevelUp, def.currentExp);
+    }
+
+    public void UpdateExpBar(float newExpValue)
+    {
+        if (ExpBar is null)
+            return;
+        ExpBar.currentHp = newExpValue;
+        ExpBar.UpdateUX();
+    }
+
+    public void SetExpBarValues(float start, float end, float current)
+    {
+        if (ExpBar is null)
+            return;
+        ExpBar.startValue = start;
+        ExpBar.totalHp = end;
+        UpdateExpBar(current);
     }
 
     public int GetHp()

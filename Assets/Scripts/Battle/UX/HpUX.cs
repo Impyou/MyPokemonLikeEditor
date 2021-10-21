@@ -9,8 +9,10 @@ public class HpUX : MonoBehaviour
 {
     public float totalHp = 100f;
     public float currentHp = 100f;
+    public float startValue = 0f;
     public float barHeight;
     public float barWidth;
+    public Color color;
     // Start is called before the first frame update
 
     private Texture2D hpTexture;
@@ -33,7 +35,7 @@ public class HpUX : MonoBehaviour
 
         hpTexture = new Texture2D(1, 1);
         hpTexture.wrapMode = TextureWrapMode.Clamp;
-        hpTexture.SetPixel(1, 1, Color.white);
+        hpTexture.SetPixel(1, 1, color);
         hpTexture.Apply();
 
         fullHpTexture = new Texture2D(1, 1);
@@ -85,7 +87,7 @@ public class HpUX : MonoBehaviour
 
     public float ComputeHpRate()
     {
-        return currentHp * 100 / totalHp;
+        return (currentHp - startValue) * 100 / (totalHp - startValue);
     }
 
     public void AnimateHp()

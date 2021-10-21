@@ -21,7 +21,7 @@ public class PokemonController : MonoBehaviour
         currentPokemonIndex = partyId;
         pokemon.def = pokemonParty.party[partyId];
         pokemon.def.ComputeStats();
-        pokemon.ResetHpBar();
+        pokemon.ResetUX();
         currentPokemonMoveIds = pokemon.GetMoveIds();
         SetPokemonSprite();
     }

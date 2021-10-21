@@ -717,19 +717,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   def:
     name: 
-    hpMax: 100
+    level: 0
+    currentExp: 0
+    totalExpToLevelUp: 0
+    expCurrentLevel: 0
     hpCurrent: 100
-    attq: 0
-    attqSpe: 0
-    def: 0
-    defSpe: 0
-    speed: 0
+    currentStats:
+      hp: 0
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+    effortValueStats:
+      hp: 0
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+    individualValueStats:
+      hp: 0
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+    defBase:
+      v:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      expMultiplier: 0
+      expFamily: 0
     nature: 
     ability: 
     moveIDs: 0000000001000000
     backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
     frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
+    shouldLevelUp: 0
   HpBar: {fileID: 915827649}
+  ExpBar: {fileID: 915827651}
 --- !u!212 &355281030
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -951,6 +982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915827650}
   - component: {fileID: 915827649}
+  - component: {fileID: 915827651}
   m_Layer: 0
   m_Name: AllyHpBar
   m_TagString: Untagged
@@ -972,8 +1004,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHp: 100
   currentHp: 100
+  startValue: 0
   barHeight: 15
   barWidth: 196.2
+  color: {r: 1, g: 1, b: 1, a: 1}
   pos: {x: 100.5, y: 169.6}
 --- !u!4 &915827650
 Transform:
@@ -989,6 +1023,25 @@ Transform:
   m_Father: {fileID: 1944740620}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915827651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915827648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a88ffd5ba88e440af050ac9db8183d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalHp: 100
+  currentHp: 100
+  startValue: 0
+  barHeight: 15
+  barWidth: 196.2
+  color: {r: 0, g: 0.94169235, b: 1, a: 1}
+  pos: {x: 100.5, y: 188.68}
 --- !u!1 &963344969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,7 +1255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemon: {fileID: 355281029}
-  pokemonParty: {fileID: 0}
+  pokemonParty:
+    party: []
+  currentPokemonIndex: -1
   moveBar: {fileID: 1439486672}
 --- !u!4 &1306032170
 Transform:
@@ -1463,19 +1518,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   def:
     name: 
-    hpMax: 100
+    level: 0
+    currentExp: 0
+    totalExpToLevelUp: 0
+    expCurrentLevel: 0
     hpCurrent: 100
-    attq: 0
-    attqSpe: 0
-    def: 0
-    defSpe: 0
-    speed: 0
+    currentStats:
+      hp: 0
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+    effortValueStats:
+      hp: 0
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+    individualValueStats:
+      hp: 0
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+    defBase:
+      v:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      expMultiplier: 0
+      expFamily: 0
     nature: 
     ability: 
     moveIDs: 00000000
     backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
     frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
+    shouldLevelUp: 0
   HpBar: {fileID: 1724385845}
+  ExpBar: {fileID: 0}
 --- !u!212 &1499402162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1571,7 +1657,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemon: {fileID: 1499402161}
-  pokemonParty: {fileID: 0}
+  pokemonParty:
+    party: []
+  currentPokemonIndex: -1
 --- !u!4 &1532136124
 Transform:
   m_ObjectHideFlags: 0
@@ -1905,8 +1993,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHp: 100
   currentHp: 100
+  startValue: 0
   barHeight: 15
   barWidth: 118.2
+  color: {r: 1, g: 1, b: 1, a: 1}
   pos: {x: 662.41, y: 53.2}
 --- !u!1 &1868632365
 GameObject:
