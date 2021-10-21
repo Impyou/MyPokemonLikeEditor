@@ -7381,27 +7381,40 @@ MonoBehaviour:
   block_size: 0.5
   party:
     party:
-    - name: Bulbizarre
-      hpMax: 150
-      hpCurrent: 150
-      attq: 0
-      attqSpe: 0
-      def: 0
-      defSpe: 0
-      speed: 0
-      nature: 
-      ability: 
-      moveIDs: 0000000001000000
-      backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
-      frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
     - name: Charmander
-      hpMax: 160
-      hpCurrent: 160
-      attq: 0
-      attqSpe: 0
-      def: 0
-      defSpe: 0
-      speed: 0
+      level: 5
+      currentExp: 0
+      totalExpToLevelUp: 0
+      hpCurrent: 10
+      currentStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      effortValueStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      individualValueStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      defBase:
+        v:
+          hp: 39
+          attq: 52
+          attqSpe: 43
+          def: 60
+          defSpe: 50
+          speed: 65
       nature: 
       ability: 
       moveIDs: 00000000
@@ -7997,13 +8010,39 @@ MonoBehaviour:
   pokemonEncounterInfos:
   - pokemon:
       name: Bulbizarre
-      hpMax: 150
+      level: 5
+      currentExp: 0
+      totalExpToLevelUp: 0
       hpCurrent: 150
-      attq: 0
-      attqSpe: 0
-      def: 0
-      defSpe: 0
-      speed: 70
+      currentStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      effortValueStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      individualValueStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      defBase:
+        v:
+          hp: 45
+          attq: 49
+          attqSpe: 49
+          def: 65
+          defSpe: 65
+          speed: 45
       nature: 
       ability: 
       moveIDs: 01000000
@@ -8012,20 +8051,46 @@ MonoBehaviour:
     rate: 5
   - pokemon:
       name: Charmander
-      hpMax: 160
+      level: 5
+      currentExp: 0
+      totalExpToLevelUp: 0
       hpCurrent: 160
-      attq: 0
-      attqSpe: 0
-      def: 0
-      defSpe: 0
-      speed: 60
+      currentStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      effortValueStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      individualValueStats:
+        hp: 0
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+      defBase:
+        v:
+          hp: 39
+          attq: 52
+          attqSpe: 43
+          def: 60
+          defSpe: 50
+          speed: 65
       nature: 
       ability: 
       moveIDs: 00000000
       backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
       frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
     rate: 5
-  generateListSize: 10
+  generateListSize: 3
   generatePokemonEncounter: []
 --- !u!4 &2023539433
 Transform:
