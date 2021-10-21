@@ -7253,8 +7253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e344844315d6a418e1669f395da1b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 691436468}
-  audioclip: {fileID: 8300000, guid: 10642b306f4f1e54d9360264e85e1476, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -8027,6 +8025,8 @@ MonoBehaviour:
       backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
       frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
     rate: 5
+  generateListSize: 10
+  generatePokemonEncounter: []
 --- !u!4 &2023539433
 Transform:
   m_ObjectHideFlags: 0

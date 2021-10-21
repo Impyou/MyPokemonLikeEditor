@@ -13,11 +13,26 @@ public class WildPokemonInfo : MonoBehaviour
     }
 
     public PokemonEncounterInfo[] pokemonEncounterInfos;
+    public int generateListSize = 1;
+
+    private int currentEncounterIndex = 0;
+    public List<PokemonDef> generatePokemonEncounter = new List<PokemonDef>();
+    
 
     public PokemonDef PickPokemon()
     {
+        var wildPokemon = generatePokemonEncounter[currentEncounterIndex];
+
+        generatePokemonEncounter[currentEncounterIndex] = GeneratePokemon();
+        currentEncounterIndex = (currentEncounterIndex + 1) % generatePokemonEncounter.Count;
+
+        return wildPokemon;
+    }
+
+    public PokemonDef GeneratePokemon()
+    {
         var totalRate = 0;
-        foreach(var pokemonEncounterInfo in pokemonEncounterInfos)
+        foreach (var pokemonEncounterInfo in pokemonEncounterInfos)
         {
             totalRate += pokemonEncounterInfo.rate;
         }
@@ -30,5 +45,13 @@ public class WildPokemonInfo : MonoBehaviour
                 return new PokemonDef(pokemonEncounterInfo.pokemon);
         }
         return new PokemonDef(pokemonEncounterInfos[pokemonEncounterInfos.Length - 1].pokemon);
+    }
+
+    public void Start()
+    {
+        for(int i = 0; i < generateListSize;i++)
+        {
+            generatePokemonEncounter.Add(GeneratePokemon());
+        }
     }
 }

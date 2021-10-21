@@ -72,6 +72,7 @@ public class BattleState : State
         }
         if (controllerAlly.IsCurrentPokemonKO())
         {
+            //TODO : rename is KO
             if(controllerAlly.IsKO())
                 info.die = true;
             else
