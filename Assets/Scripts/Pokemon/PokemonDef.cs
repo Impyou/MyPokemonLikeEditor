@@ -27,6 +27,8 @@ public class PokemonDef
     public Sprite backSprite;
     public Sprite frontSprite;
 
+    public bool shouldLevelUp = false;
+
     public PokemonDef(string name,
                       int level,
                       PokemonDefBase defBase,
@@ -68,6 +70,13 @@ public class PokemonDef
 
     }
 
+    public void InitNew()
+    {
+        ComputeStats();
+        FullHeal();
+        SetExpToLevel();
+    }
+
     public void ComputeStats()
     {
         currentStats.hp = ComputeHpFormula(defBase.v.hp, effortValueStats.hp, individualValueStats.hp);
@@ -76,6 +85,7 @@ public class PokemonDef
         currentStats.def = ComputeIndividualStat(defBase.v.def, effortValueStats.def, individualValueStats.def);
         currentStats.defSpe = ComputeIndividualStat(defBase.v.defSpe, effortValueStats.defSpe, individualValueStats.defSpe);
         currentStats.speed = ComputeIndividualStat(defBase.v.speed, effortValueStats.speed, individualValueStats.speed);
+        totalExpToLevelUp = defBase.GetNeededExpLevel(level + 1);
     }
 
 
@@ -98,5 +108,52 @@ public class PokemonDef
     public bool IsKO()
     {
         return hpCurrent == 0;
+    }
+
+    /// <summary>
+    /// Add the exp to pokemon until a level is reached 
+    /// and return the remainig exp
+    /// </summary>
+    /// <param name="expPoint"></param>
+    /// <returns>remaing exp</returns>
+    public int GainExp(int expPoint)
+    {
+        var nextLevelNeededExp = defBase.GetNeededExpLevel(level + 1) - currentExp;
+        int remainingExp;
+        if (expPoint - nextLevelNeededExp < 0)
+        {
+            remainingExp = 0;
+            currentExp += expPoint;
+        }
+        else
+        {
+            remainingExp = expPoint - nextLevelNeededExp;
+            currentExp += nextLevelNeededExp;
+            shouldLevelUp = true;
+        }
+
+        return remainingExp;
+    }
+
+    public int GetExpValue()
+    {
+        return (int)(defBase.expMultiplier * level / 7f);
+    }
+
+    public bool HasLevelUpAndResetIt()
+    {
+        var _shouldLevelUp = shouldLevelUp;
+        shouldLevelUp = false;
+        return _shouldLevelUp;
+    }
+
+    public void LevelUp()
+    {
+        level += 1;
+    }
+
+    public void SetExpToLevel()
+    {
+        currentExp = defBase.GetNeededExpLevel(level);
     }
 }

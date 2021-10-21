@@ -32,6 +32,7 @@ public class Character : MonoBehaviour
     {
         pos = Vector2Int.one;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        party.InitNewParty();
     }
 
     // Update is called once per frame

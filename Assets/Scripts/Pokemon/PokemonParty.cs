@@ -52,4 +52,10 @@ public class PokemonParty
     {
         return GetLength() == 0;
     }
+
+    public void InitNewParty()
+    {
+        foreach (var pokemon in party)
+            pokemon.InitNew();
+    }
 }

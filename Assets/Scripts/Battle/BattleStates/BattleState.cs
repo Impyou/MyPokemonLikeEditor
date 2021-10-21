@@ -65,26 +65,7 @@ public class BattleState : State
             UpdateQuitBattle();
             return;
         }
-        if(controllerOpponent.pokemonParty.IsEmpty())
-        {
-            quitBattle = true;
-            return;
-        }
-        if (controllerAlly.IsCurrentPokemonKO())
-        {
-            //TODO : rename is KO
-            if(controllerAlly.IsKO())
-                info.die = true;
-            else
-            {
-                StateStack.Push(new ChangePokemon(controllerAlly, controllerAlly.GetNextAlivePokemonIndex(), () => { }));
-                return;
-            }
-        }
-        else if (controllerOpponent.IsKO())
-            info.kill = true;
-
-        if (info.run)
+        else if (info.run)
         {
             StateStack.Push(new Textbox("You run away !", Textbox.TargetTextbox.BATTLE_TEXTBOX));
             quitBattle = true;
@@ -103,6 +84,33 @@ public class BattleState : State
             quitBattle = true;
             return;
         }
+        if (controllerOpponent.pokemonParty.IsEmpty())
+        {
+            quitBattle = true;
+            return;
+        }
+        if (controllerAlly.IsCurrentPokemonKO())
+        {
+            //TODO : rename is KO
+            if (controllerAlly.IsKO())
+                info.die = true;
+            else
+            {
+                StateStack.Push(new ChangePokemon(controllerAlly, controllerAlly.GetNextAlivePokemonIndex(), () => { }));
+                return;
+            }
+
+        }
+        else if (controllerOpponent.IsCurrentPokemonKO())
+        {
+            if(controllerOpponent.IsKO())
+                info.kill = true;
+            StateStack.Push(new Reward(controllerAlly.pokemon.def, controllerOpponent.pokemon.def));
+        }
+
+        if (info.kill || info.run || info.die || quitBattle)
+            return;
+
         StateStack.Push(new SelectAction());
     }
 }
