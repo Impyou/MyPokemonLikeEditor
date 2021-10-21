@@ -7381,7 +7381,7 @@ MonoBehaviour:
   block_size: 0.5
   party:
     party:
-    - name: Charmander
+    - name: Bulbizarre
       level: 5
       currentExp: 0
       totalExpToLevelUp: 0
@@ -7409,17 +7409,17 @@ MonoBehaviour:
         speed: 0
       defBase:
         v:
-          hp: 39
-          attq: 52
-          attqSpe: 43
-          def: 60
-          defSpe: 50
-          speed: 65
+          hp: 45
+          attq: 49
+          attqSpe: 49
+          def: 65
+          defSpe: 65
+          speed: 45
       nature: 
       ability: 
-      moveIDs: 00000000
-      backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
-      frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
+      moveIDs: 0000000001000000
+      backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
+      frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
   moveAnimationTime: 0.15
   playerAnimationDirs:
   - name: DownAnim

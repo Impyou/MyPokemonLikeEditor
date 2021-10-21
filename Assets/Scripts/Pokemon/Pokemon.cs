@@ -12,9 +12,10 @@ public class Pokemon : MonoBehaviour
         return def.moveIDs;
     }
 
-    public void inflictDamage(int damagePower)
+    public void inflictDamage(int damagePower, PokemonDef attacker)
     {
-        def.hpCurrent -= damagePower;
+        var damage = ((2 * def.level / 5) + 2) * damagePower * attacker.currentStats.attq / (50 * def.currentStats.def) + 2;
+        def.hpCurrent -= damage;
         def.hpCurrent = Mathf.Max(def.hpCurrent, 0);
     }
 

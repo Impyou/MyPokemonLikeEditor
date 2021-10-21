@@ -51,7 +51,7 @@ public class PlayTurn : State
             return;
 
         var startHp = defender.GetHp();
-        defender.inflictDamage(move.damage);
+        defender.inflictDamage(move.damage, attacker.def);
         var endHp = defender.GetHp();
         SoundManager.__instance__.PlaySoundEffect(BattleUI.GetSound("DamageSound"));
         // TODO : Maybe use a factory
