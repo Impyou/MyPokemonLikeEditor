@@ -91,6 +91,7 @@ public class PokemonDef
 
     public void FullHeal()
     {
+        ComputeStats();
         hpCurrent = currentStats.hp;
     }
 
