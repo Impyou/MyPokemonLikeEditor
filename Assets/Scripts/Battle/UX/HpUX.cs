@@ -1,3 +1,5 @@
+using DigitalRuby.Tween;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +7,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class HpUX : MonoBehaviour
 {
-    public int totalHp = 100;
-    public int currentHp = 100;
+    public float totalHp = 100f;
+    public float currentHp = 100f;
     public float barHeight;
     public float barWidth;
     // Start is called before the first frame update
@@ -69,7 +71,6 @@ public class HpUX : MonoBehaviour
     public void ChangeHp(int newHp)
     {
         currentHp = newHp;
-        var hpRate = ComputeHpRate();
         
         hpRect = new Rect(pos,
                         new Vector2(ComputeHpRate() * barWidth / 100, barHeight)
@@ -82,9 +83,14 @@ public class HpUX : MonoBehaviour
         ChangeHp(newHp);
     }
 
-    public int ComputeHpRate()
+    public float ComputeHpRate()
     {
         return currentHp * 100 / totalHp;
+    }
+
+    public void AnimateHp()
+    {
+        Action<ITween<float>> hpAnim = (t) => { };
     }
 
 }

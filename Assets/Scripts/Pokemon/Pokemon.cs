@@ -19,7 +19,7 @@ public class Pokemon : MonoBehaviour
         def.hpCurrent = Mathf.Max(def.hpCurrent, 0);
     }
 
-    public void UpdateHpBar(int newHp)
+    public void UpdateHpBar(float newHp)
     {
         HpBar.currentHp = newHp;
         HpBar.UpdateUX();
