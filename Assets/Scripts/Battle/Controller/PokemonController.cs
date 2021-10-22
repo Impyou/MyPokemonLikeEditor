@@ -76,6 +76,4 @@ public class PokemonController : MonoBehaviour
         return pokemonParty.party[index].name;
     }
 
-
-
 }

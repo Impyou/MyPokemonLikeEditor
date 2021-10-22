@@ -12,20 +12,27 @@ public class Textbox : State
 
     private GameObject textObject;
     private TextMesh textMesh;
-    public Textbox(string text, TargetTextbox targetTextbox)
+
+    public enum TextboxType { WAIT_KEY, ONE_FRAME, TIME_DEPENDENT};
+    TextboxType type;
+
+    public Textbox(string text, TargetTextbox targetTextbox, TextboxType type = TextboxType.WAIT_KEY)
     {
         this.text = text;
         this.targetTextbox = targetTextbox;
+        this.type = type;
     }
 
-    public Textbox(string text, TargetTextbox targetTextbox, Action callback) : this(text, targetTextbox)
+    public Textbox(string text, TargetTextbox targetTextbox, Action callback, TextboxType type = TextboxType.WAIT_KEY) : this(text, targetTextbox, type : type)
     {
         this.callback = callback;
     }
 
     public void End()
     {
-        textObject.SetActive(false);
+        textMesh.text = "";
+        if(targetTextbox == TargetTextbox.WORLD_TEXTBOX)
+            textObject.SetActive(false);
         if(callback != null)
             callback.Invoke();
     }
@@ -41,17 +48,23 @@ public class Textbox : State
             case TargetTextbox.WORLD_TEXTBOX:
                 textObject = WorldUI.GetGameObject("WorldTextbox");
                 textMesh = textObject.GetComponentInChildren<TextMesh>();
+                textObject.SetActive(true);
                 break;
         }
-        textObject.SetActive(true);
         textMesh.text = text;
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        switch(type)
         {
-            StateStack.Pop();
+            case TextboxType.WAIT_KEY:
+                if (Input.GetKeyDown(KeyCode.Return))
+                    StateStack.Pop();
+                break;
+            case TextboxType.ONE_FRAME:
+                StateStack.Pop();
+                break;
         }
     }
 }

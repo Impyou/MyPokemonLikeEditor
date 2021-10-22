@@ -7407,7 +7407,7 @@ MonoBehaviour:
         expFamily: 0
       nature: 
       ability: 
-      moveIDs: 0000000001000000
+      moveIDs: 020000000000000001000000
       backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
       frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
       shouldLevelUp: 0

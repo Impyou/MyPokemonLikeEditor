@@ -97,7 +97,7 @@ public class Character : MonoBehaviour
         {
             meetPokemon = true;
         }
-
+        // TODO : Use animationLock
         isMoving = true;
         movingTimer = 0f;
         Action<ITween<Vector2>> movementCallback = (t) => { SetPosition(t.CurrentValue); };

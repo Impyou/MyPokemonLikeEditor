@@ -7,6 +7,12 @@ public class Pokemon : MonoBehaviour
     public PokemonDef def;
     public HpUX HpBar;
     public HpUX ExpBar;
+    private SpriteRenderer spriteRenderer;
+
+    public void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     public int[] GetMoveIds()
     {
@@ -52,6 +58,11 @@ public class Pokemon : MonoBehaviour
         UpdateExpBar(current);
     }
 
+    public void SetAlpha(float alpha)
+    {
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
+    }
+
     public int GetHp()
     {
         return def.hpCurrent;
@@ -65,5 +76,16 @@ public class Pokemon : MonoBehaviour
     public bool IsKO()
     {
         return GetHp() == 0;
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        transform.position = position;
+        Debug.Log(position);
+    }
+
+    public Vector2 GetPosition()
+    {
+        return transform.position;
     }
 }

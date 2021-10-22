@@ -17,3 +17,5 @@ MonoBehaviour:
     damage: 20
   - name: Fouet Liane
     damage: 40
+  - name: UltraBullshit
+    damage: 1000

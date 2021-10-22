@@ -1,3 +1,5 @@
+using DigitalRuby.Tween;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -102,15 +104,35 @@ public class BattleState : State
 
         }
         else if (controllerOpponent.IsCurrentPokemonKO())
-        {
-            if(controllerOpponent.IsKO())
-                info.kill = true;
-            StateStack.Push(new Reward(controllerAlly.pokemon.def, controllerOpponent.pokemon.def));
-        }
+            OpponentPokemonKO();
 
         if (info.kill || info.run || info.die || quitBattle)
             return;
 
         StateStack.Push(new SelectAction());
+    }
+
+    public void OpponentPokemonKO()
+    {
+        if (controllerOpponent.IsKO())
+            info.kill = true;
+
+        var pokeRef = controllerOpponent.pokemon;
+
+        var waitAnimationState = new WaitForAnimation();
+        var pokeFallLock = waitAnimationState.GetNewLock();
+        Action<ITween<float>> pokemonFall = (t) => {
+            pokeRef.SetPosition(new Vector2(8.57f, t.CurrentValue));
+        };
+        pokeRef.gameObject.Tween("Fall", 6.06f, -6.32f, 1f, TweenScaleFunctions.CubicEaseOut, pokemonFall, (t) =>
+        {
+            pokeFallLock.Open();
+        });
+        string pokemonName = controllerOpponent.GetName(controllerOpponent.GetCurrentPokemonIndex());
+        StateStack.Push(new Textbox($"Wild {pokemonName} has fainted", Textbox.TargetTextbox.BATTLE_TEXTBOX, () =>
+        {
+            StateStack.Push(new Reward(controllerAlly.pokemon.def, controllerOpponent.pokemon.def));
+        }, type : Textbox.TextboxType.ONE_FRAME));
+        StateStack.Push(waitAnimationState);
     }
 }
