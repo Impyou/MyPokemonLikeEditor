@@ -46,6 +46,8 @@ public class BattleState : State
 
         controllerAlly.SetNextAlivePokemon();
         controllerOpponent.SetNextAlivePokemon();
+
+        StateStack.Push(new InitializeBattle());
     }
 
     public void UpdateQuitBattle()
