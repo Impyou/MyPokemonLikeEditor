@@ -40,24 +40,27 @@ public class Reward : State
             return;
         }
         var currentExp = pokemonAlly.currentExp;
-        var remainingExp = pokemonAlly.GainExp(rewardExp);
+        var expGainSummary = pokemonAlly.GainExp(rewardExp);
         var nextExp = pokemonAlly.currentExp;
-        rewardExp = remainingExp;
+        rewardExp = expGainSummary.remainingExp;
 
         isAnimated = true;
 
         Action<ITween<float>> tweenExpCallback = (t) => { pokemonAllyUI.UpdateExpBar(t.CurrentValue); };
         Debug.Log($"current : {currentExp}, next : {nextExp}");
-        pokemonAllyUI.gameObject.Tween("UpdateExp", currentExp, nextExp, 0.4f, TweenScaleFunctions.SineEaseIn, tweenExpCallback, (t) =>
+        SoundManager.__instance__.PlaySoundEffect(BattleUI.GetSound("GainExp"));
+        pokemonAllyUI.gameObject.Tween("UpdateExp", currentExp, nextExp, 0.01f * expGainSummary.expPercent, TweenScaleFunctions.SineEaseIn, tweenExpCallback, (t) =>
         {
+            SoundManager.__instance__.StopSoundEffect();
             isAnimated = false;
             if (pokemonAlly.HasLevelUpAndResetIt())
             {
                 pokemonAlly.LevelUp();
                 pokemonAlly.ComputeStats();
 
-            StateStack.Push(new Textbox($"{pokemonAlly.name} grew to level {pokemonAlly.level}", Textbox.TargetTextbox.BATTLE_TEXTBOX, () => {
-                pokemonAllyUI.SetExpBarValues(pokemonAlly.expCurrentLevel, pokemonAlly.totalExpToLevelUp, pokemonAlly.expCurrentLevel);
+                SoundManager.__instance__.PlaySoundEffect(BattleUI.GetSound("LevelUp"));
+                StateStack.Push(new Textbox($"{pokemonAlly.name} grew to level {pokemonAlly.level}", Textbox.TargetTextbox.BATTLE_TEXTBOX, () => {
+                    pokemonAllyUI.SetExpBarValues(pokemonAlly.expCurrentLevel, pokemonAlly.totalExpToLevelUp, pokemonAlly.expCurrentLevel);
             }));
             }
         });

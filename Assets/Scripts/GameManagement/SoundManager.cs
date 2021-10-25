@@ -27,5 +27,9 @@ public class SoundManager : MonoBehaviour
         musicSource.Play();
     }
 
+    public void StopSoundEffect()
+    {
+        soundEffectSource.Stop();
+    }
 
 }

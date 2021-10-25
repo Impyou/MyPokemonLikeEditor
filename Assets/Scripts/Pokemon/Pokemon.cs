@@ -88,4 +88,16 @@ public class Pokemon : MonoBehaviour
     {
         return transform.position;
     }
+
+    public string GetName()
+    {
+        return def.name;
+    }
+
+    public void SetGUIActive()
+    {
+        if(ExpBar != null)
+            ExpBar.shouldDraw = true;
+        HpBar.shouldDraw = true;
+    }
 }

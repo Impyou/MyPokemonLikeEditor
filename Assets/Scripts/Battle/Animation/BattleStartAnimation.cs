@@ -33,4 +33,9 @@ public class BattleStartAnimation : MonoBehaviour
     {
         gameObject.Tween("StartBattle", endColor, startColor, flickerTime, TweenScaleFunctions.Linear, updateColor, (t) => { });
     }
+
+    public void AnimateSingleFlicker()
+    {
+
+    }
 }

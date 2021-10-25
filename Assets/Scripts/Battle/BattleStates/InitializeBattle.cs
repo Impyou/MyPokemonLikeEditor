@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class InitializeBattle : State
 {
-    public GameObject battleStationAlly;
-    public GameObject battleStationOpponent;
-    public GameObject pokemonOpponent;
+    public GameObject battleStationAlly, battleStationOpponent;
+    public GameObject pokemonOpponent, pokemonAlly;
 
-    public AnimationData battleStationAnimationAlly, battleStationAnimationOpponent;
+    public AnimationData battleStationAnimationAlly, battleStationAnimationOpponent,
+                         pokemonOpponentAppearAnimation, pokemonAllyAppearAnimation;
+
     public WaitForAnimation waitForAnimation;
 
     public int numberFinishedAnimation;
@@ -28,16 +29,25 @@ public class InitializeBattle : State
         battleStationAlly = BattleUI.GetGameObject("BattleStationAlly");
         battleStationOpponent = BattleUI.GetGameObject("BattleStationOpponent");
         pokemonOpponent = BattleUI.GetGameObject("PokemonOpponent");
+        pokemonAlly = BattleUI.GetGameObject("PokemonAlly");
 
         battleStationAnimationAlly = Resources.Load<AnimationData>("Animations/Battle/BattleStationAnimationAlly");
         battleStationAnimationOpponent = Resources.Load<AnimationData>("Animations/Battle/BattleStationAnimationOpponent");
+        pokemonOpponentAppearAnimation = Resources.Load<AnimationData>("Animations/Battle/PokemonOpponentAppearAnimation");
+        pokemonAllyAppearAnimation = Resources.Load<AnimationData>("Animations/Battle/PokemonAllyAppearAnimation");
     }
 
     public void Update()
     {
         if(numberFinishedAnimation == 2)
         {
+            pokemonAlly.GetComponent<Pokemon>().SetGUIActive();
+            pokemonOpponent.GetComponent<Pokemon>().SetGUIActive();
             StateStack.Pop();
+            StateStack.Push(new Textbox($"A wild {pokemonOpponent.GetComponent<Pokemon>().GetName()} appear !", Textbox.TargetTextbox.BATTLE_TEXTBOX, () =>
+            {
+                StateStack.Push(new SelectAction());
+            }));
             return;
         }
         if (initAnimation)
@@ -45,14 +55,12 @@ public class InitializeBattle : State
 
         battleStationAnimationAlly.GenerateTween(battleStationAlly, "BattleStationAlly", (t) =>
         {
-            Debug.Log(t.CurrentValue);
             battleStationAlly.transform.position = t.CurrentValue;
         }, (t) => numberFinishedAnimation += 1);
         battleStationAnimationOpponent.GenerateTween(battleStationOpponent, "BattleStationOp", (t) =>
         {
             battleStationOpponent.transform.position = t.CurrentValue;
         }, (t) => numberFinishedAnimation += 1);
-
         initAnimation = true;
     }
 }

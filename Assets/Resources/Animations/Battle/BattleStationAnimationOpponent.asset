@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43137bbba7305154ebeb37451b2296b4, type: 3}
   m_Name: BattleStationAnimationOpponent
   m_EditorClassIdentifier: 
-  start_pos: {x: 25, y: 4.85}
+  start_pos: {x: -25, y: 4.85}
   end_pos: {x: 8.7, y: 4.85}
   duration: 1
   interpolationFunction: 0

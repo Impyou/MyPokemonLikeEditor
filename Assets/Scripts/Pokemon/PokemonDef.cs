@@ -112,29 +112,41 @@ public class PokemonDef
         return hpCurrent == 0;
     }
 
+    public struct ExpGainSummary
+    {
+        public int remainingExp;
+        public int expPercent;
+    }
+
     /// <summary>
     /// Add the exp to pokemon until a level is reached 
     /// and return the remainig exp
     /// </summary>
     /// <param name="expPoint"></param>
     /// <returns>remaing exp</returns>
-    public int GainExp(int expPoint)
+    public ExpGainSummary GainExp(int expPoint)
     {
+        int totalLevelExp = defBase.GetNeededExpLevel(level + 1) - defBase.GetNeededExpLevel(level);
         var nextLevelNeededExp = defBase.GetNeededExpLevel(level + 1) - currentExp;
         int remainingExp;
+        int expAdded = 0;
         if (expPoint - nextLevelNeededExp < 0)
         {
+            expAdded = expPoint;
             remainingExp = 0;
             currentExp += expPoint;
         }
         else
         {
+            expAdded = nextLevelNeededExp;
             remainingExp = expPoint - nextLevelNeededExp;
             currentExp += nextLevelNeededExp;
             shouldLevelUp = true;
         }
+        var expPercent = expAdded * 100 / totalLevelExp;
 
-        return remainingExp;
+        return new ExpGainSummary { remainingExp = remainingExp,
+                                    expPercent = expPercent};
     }
 
     public int GetExpValue()

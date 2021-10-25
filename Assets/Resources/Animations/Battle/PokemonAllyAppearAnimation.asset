@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43137bbba7305154ebeb37451b2296b4, type: 3}
-  m_Name: BattleStationAnimationAlly
+  m_Name: PokemonAllyAppearAnimation
   m_EditorClassIdentifier: 
-  start_pos: {x: 25, y: -4}
-  end_pos: {x: -5.88, y: -4}
+  start_pos: {x: 25, y: -0.46}
+  end_pos: {x: -10.16, y: -0.46}
   duration: 1
   interpolationFunction: 0

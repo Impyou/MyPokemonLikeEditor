@@ -37,7 +37,6 @@ public class BattleState : State
             Debug.LogError("MultipleBattleState instance !!!");
 
         __instance__ = this;
-        StateStack.Push(new SelectAction());
 
         map = WorldUI.GetGameObject("Map");
 
@@ -88,6 +87,7 @@ public class BattleState : State
             quitBattle = true;
             return;
         }
+        //TODO : rename to pokemon caught
         if (controllerOpponent.pokemonParty.IsEmpty())
         {
             quitBattle = true;

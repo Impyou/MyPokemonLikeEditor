@@ -36,6 +36,7 @@ public class CatchingState : State
             user.CatchOpponentPokemon(target);
             StateStack.Pop();
             StateStack.Push(new Textbox("You caught it !", Textbox.TargetTextbox.BATTLE_TEXTBOX, callbackOnSuccess));
+            SoundManager.__instance__.PlayMusic(BattleUI.GetSound("VictoryMusic"));
         }
         else
         {

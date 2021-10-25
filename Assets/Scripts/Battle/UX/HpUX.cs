@@ -22,6 +22,7 @@ public class HpUX : MonoBehaviour
     private Rect fullHpRect;
 
     public Vector2 pos;
+    public bool shouldDraw = false;
 
     public void Start()
     {
@@ -47,6 +48,8 @@ public class HpUX : MonoBehaviour
 
     public void OnGUI()
     {
+        if (!shouldDraw)
+            return;
         if (Event.current.type.Equals(EventType.Repaint))
         {
             Graphics.DrawTexture(fullHpRect, fullHpTexture);
