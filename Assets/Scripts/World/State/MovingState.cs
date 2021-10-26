@@ -18,6 +18,9 @@ public class MovingState : State
 
     public void Update()
     {
-        character.MoveUpdate();
+        if (Input.GetKeyDown(KeyCode.Return))
+            StateStack.Push(new Menu());
+        else
+            character.MoveUpdate();
     }
 }
