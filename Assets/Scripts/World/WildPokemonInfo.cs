@@ -31,6 +31,7 @@ public class WildPokemonInfo : MonoBehaviour
 
     public PokemonDef GeneratePokemon()
     {
+        var newPokemon = new PokemonDef(pokemonEncounterInfos[pokemonEncounterInfos.Length - 1].pokemon);
         var totalRate = 0;
         foreach (var pokemonEncounterInfo in pokemonEncounterInfos)
         {
@@ -42,9 +43,13 @@ public class WildPokemonInfo : MonoBehaviour
         {
             cumulativeRate += (pokemonEncounterInfo.rate / (float)totalRate);
             if (randomPickValue < cumulativeRate)
-                return new PokemonDef(pokemonEncounterInfo.pokemon);
+            {
+                newPokemon = new PokemonDef(pokemonEncounterInfo.pokemon);
+                break;
+            }
         }
-        return new PokemonDef(pokemonEncounterInfos[pokemonEncounterInfos.Length - 1].pokemon);
+        newPokemon.InitNew();
+        return newPokemon;
     }
 
     public void Start()

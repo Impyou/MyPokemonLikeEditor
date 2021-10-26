@@ -7151,7 +7151,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691436463}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 10642b306f4f1e54d9360264e85e1476, type: 3}
@@ -7902,7 +7902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db7703de98ca7d488798e4eb4c72ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 1810091146}
   flickerTime: 0.2
 --- !u!212 &1810091146
 SpriteRenderer:
