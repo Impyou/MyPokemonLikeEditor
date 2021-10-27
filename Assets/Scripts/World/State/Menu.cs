@@ -10,6 +10,7 @@ public class Menu : State
     public Material menuEffectMat;
     public PauseMenuData pauseMenuData;
     public bool quitting;
+    public bool isMenuInit;
 
     public void End()
     {
@@ -25,6 +26,7 @@ public class Menu : State
         var waitState = new WaitForAnimation();
         var lockMenu = waitState.GetNewLock();
         var lockPokemonMenu = waitState.GetNewLock();
+        var lockPokemonBotMenu = waitState.GetNewLock();
 
         Action<ITween<float>> updateEffect = (t) => { menuEffectMat.SetFloat("FadeValue", t.CurrentValue); };
         menuEffectObj.Tween("MenuEffectDown", 0f, 3f, 0.5f, TweenScaleFunctions.Linear, updateEffect, (t)=> { lockMenu.Open(); });
@@ -32,7 +34,11 @@ public class Menu : State
         pauseMenuData.topMenuAnimationData.GenerateTween(pauseMenuData.topMenu, "PokemonMenuAnimate", 
         (t) => pauseMenuData.topMenu.transform.position = t.CurrentValue, 
         (t) => lockPokemonMenu.Open());
-        
+
+        pauseMenuData.botMenuAnimationData.GenerateTween(pauseMenuData.botMenu, "PokemonBotMenuAnimate",
+        (t) => pauseMenuData.botMenu.transform.position = t.CurrentValue,
+        (t) => lockPokemonBotMenu.Open());
+
         StateStack.Push(waitState);
     }
 
@@ -40,6 +46,13 @@ public class Menu : State
     {
         if (quitting)
             return;
+
+        if(!isMenuInit)
+        {
+            pauseMenuData.InitMenu();
+            isMenuInit = true;
+        }
+
         if(Input.GetKeyDown(KeyCode.A))
         {
             quitting = true;
@@ -49,6 +62,24 @@ public class Menu : State
             });
             pauseMenuData.topMenuAnimationData.GenerateReverseTween(pauseMenuData.topMenu, "PokemonMenuAnimate",
             (t) => pauseMenuData.topMenu.transform.position = t.CurrentValue);
+            pauseMenuData.botMenuAnimationData.GenerateReverseTween(pauseMenuData.botMenu, "PokemonBotMenuAnimate",
+            (t) => pauseMenuData.botMenu.transform.position = t.CurrentValue);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            pauseMenuData.Move(Direction.LEFT);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            pauseMenuData.Move(Direction.RIGHT);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            pauseMenuData.Move(Direction.UP);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            pauseMenuData.Move(Direction.DOWN);
         }
     }
 }

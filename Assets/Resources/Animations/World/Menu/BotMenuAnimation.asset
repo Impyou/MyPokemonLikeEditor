@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43137bbba7305154ebeb37451b2296b4, type: 3}
   m_Name: BotMenuAnimation
   m_EditorClassIdentifier: 
-  start_pos: {x: 0, y: 0}
-  end_pos: {x: 0, y: 0}
-  duration: 0
-  interpolationFunction: 0
+  start_pos: {x: 0, y: -2.5}
+  end_pos: {x: 0, y: 2.1}
+  duration: 1
+  interpolationFunction: 1
