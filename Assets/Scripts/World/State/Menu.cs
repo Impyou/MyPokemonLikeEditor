@@ -12,12 +12,21 @@ public class Menu : State
     public bool quitting;
     public bool isMenuInit;
 
+    public Action[] menuCallbacks;
+
     public void End()
     {
     }
 
+    public void OpenTeamMenu()
+    {
+        StateStack.Push(new SelectPokemonMenu());
+    }
+
     public void Init()
     {
+        menuCallbacks = new Action[] { OpenTeamMenu, null, null };
+
         menuEffectMat = WorldUI.Get<SpriteRenderer>("MenuEffect").material;
         menuEffectObj = WorldUI.GetGameObject("MenuEffect");
 
@@ -81,6 +90,11 @@ public class Menu : State
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             pauseMenuData.Move(Direction.DOWN);
+        }
+        else if(Input.GetKeyDown(KeyCode.Return))
+        {
+            if(menuCallbacks[pauseMenuData.GetIndex()] != null)
+                menuCallbacks[pauseMenuData.GetIndex()].Invoke();
         }
     }
 }

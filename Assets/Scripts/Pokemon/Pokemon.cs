@@ -6,8 +6,8 @@ using UnityEngine;
 public class Pokemon : MonoBehaviour
 {
     public PokemonDef def;
-    public HpUX HpBar;
-    public HpUX ExpBar;
+    public UxBar HpBar;
+    public UxBar ExpBar;
     private SpriteRenderer spriteRenderer;
 
     public void Start()
@@ -29,14 +29,14 @@ public class Pokemon : MonoBehaviour
 
     public void UpdateHpBar(float newHp)
     {
-        HpBar.currentHp = newHp;
+        HpBar.currentValue = newHp;
         HpBar.UpdateUX();
     }
 
     public void ResetUX()
     {
-        HpBar.totalHp = def.currentStats.hp;
-        HpBar.currentHp = def.hpCurrent;
+        HpBar.maxValue = def.currentStats.hp;
+        HpBar.currentValue = def.hpCurrent;
         HpBar.UpdateUX();
 
         SetExpBarValues(def.expCurrentLevel, def.totalExpToLevelUp, def.currentExp);
@@ -46,7 +46,7 @@ public class Pokemon : MonoBehaviour
     {
         if (ExpBar is null)
             return;
-        ExpBar.currentHp = newExpValue;
+        ExpBar.currentValue = newExpValue;
         ExpBar.UpdateUX();
     }
 
@@ -54,9 +54,8 @@ public class Pokemon : MonoBehaviour
     {
         if (ExpBar is null)
             return;
-        ExpBar.startValue = start;
-        ExpBar.totalHp = end;
-        UpdateExpBar(current);
+        ExpBar.FullReset(start, end, current);
+        ExpBar.UpdateUX();
     }
 
     public void SetAlpha(float alpha)

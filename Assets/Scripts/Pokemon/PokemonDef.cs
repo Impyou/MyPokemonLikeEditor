@@ -27,6 +27,7 @@ public class PokemonDef
     public int[] moveIDs;
     public Sprite backSprite;
     public Sprite frontSprite;
+    public Sprite icon;
 
     public bool shouldLevelUp = false;
 
@@ -39,7 +40,8 @@ public class PokemonDef
                       string ability,
                       int[] moveIDs,
                       Sprite backSprite,
-                      Sprite frontSprite
+                      Sprite frontSprite,
+                      Sprite icon
                       )
     {
         this.name = name;
@@ -52,6 +54,7 @@ public class PokemonDef
         this.moveIDs = moveIDs;
         this.backSprite = backSprite;
         this.frontSprite = frontSprite;
+        this.icon = icon;
 
         ComputeStats();
         this.hpCurrent = this.currentStats.hp;
@@ -66,7 +69,8 @@ public class PokemonDef
                                                   original.ability,
                                                   original.moveIDs,
                                                   original.backSprite,
-                                                  original.frontSprite)
+                                                  original.frontSprite,
+                                                  original.icon)
     {
 
     }

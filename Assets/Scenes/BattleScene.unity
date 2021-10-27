@@ -1085,12 +1085,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a88ffd5ba88e440af050ac9db8183d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHp: 100
-  currentHp: 100
+  offset: {x: 0, y: 0}
+  maxValue: 100
+  currentValue: 100
   startValue: 0
   barHeight: 15
   barWidth: 196.2
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.039850973, g: 1, b: 0.0047169924, a: 1}
   pos: {x: 100.5, y: 169.6}
   shouldDraw: 0
 --- !u!4 &915827650
@@ -1119,12 +1120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a88ffd5ba88e440af050ac9db8183d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHp: 100
-  currentHp: 100
+  offset: {x: 0, y: 0}
+  maxValue: 100
+  currentValue: 100
   startValue: 0
   barHeight: 15
   barWidth: 196.2
-  color: {r: 0, g: 0.94169235, b: 1, a: 1}
+  color: {r: 0, g: 1, b: 0.96513224, a: 1}
   pos: {x: 100.5, y: 188.68}
   shouldDraw: 0
 --- !u!1 &963344969
@@ -2158,12 +2160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a88ffd5ba88e440af050ac9db8183d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHp: 100
-  currentHp: 100
+  offset: {x: 0, y: 0}
+  maxValue: 100
+  currentValue: 100
   startValue: 0
   barHeight: 15
   barWidth: 118.2
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.039215688, g: 1, b: 0.003921569, a: 1}
   pos: {x: 662.41, y: 53.2}
   shouldDraw: 0
 --- !u!1 &1868632365

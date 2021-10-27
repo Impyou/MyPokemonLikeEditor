@@ -72,4 +72,9 @@ public class PauseMenuData : MonoBehaviour
         cursor = 0;
         StartMenuShader();
     }
+
+    public int GetIndex()
+    {
+        return cursor;
+    }
 }
