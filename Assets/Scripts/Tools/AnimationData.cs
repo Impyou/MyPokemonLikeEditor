@@ -31,4 +31,10 @@ public class AnimationData : ScriptableObject
         var tween = goRef.gameObject.Tween(key, start_pos, end_pos, duration, GetInterpolationFunction(), animationCallback, callback);
         tween.ForceUpdate = true;
     }
+
+    public void GenerateReverseTween(GameObject goRef, string key, Action<ITween<Vector2>> animationCallback, Action<ITween<Vector2>> callback = null)
+    {
+        var tween = goRef.gameObject.Tween(key, end_pos, start_pos, duration, GetInterpolationFunction(), animationCallback, callback);
+        tween.ForceUpdate = true;
+    }
 }

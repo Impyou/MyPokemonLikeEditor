@@ -8,6 +8,8 @@ public class Menu : State
 {
     public GameObject menuEffectObj;
     public Material menuEffectMat;
+    public PauseMenuData pauseMenuData;
+    public bool quitting;
 
     public void End()
     {
@@ -18,23 +20,35 @@ public class Menu : State
         menuEffectMat = WorldUI.Get<SpriteRenderer>("MenuEffect").material;
         menuEffectObj = WorldUI.GetGameObject("MenuEffect");
 
+        pauseMenuData = WorldUI.Get<PauseMenuData>("PauseMenu");
+
         var waitState = new WaitForAnimation();
         var lockMenu = waitState.GetNewLock();
+        var lockPokemonMenu = waitState.GetNewLock();
 
         Action<ITween<float>> updateEffect = (t) => { menuEffectMat.SetFloat("FadeValue", t.CurrentValue); };
         menuEffectObj.Tween("MenuEffectDown", 0f, 3f, 0.5f, TweenScaleFunctions.Linear, updateEffect, (t)=> { lockMenu.Open(); });
+
+        pauseMenuData.topMenuAnimationData.GenerateTween(pauseMenuData.topMenu, "PokemonMenuAnimate", 
+        (t) => pauseMenuData.topMenu.transform.position = t.CurrentValue, 
+        (t) => lockPokemonMenu.Open());
         
         StateStack.Push(waitState);
     }
 
     public void Update()
     {
+        if (quitting)
+            return;
         if(Input.GetKeyDown(KeyCode.A))
         {
+            quitting = true;
             Action<ITween<float>> updateEffect = (t) => { menuEffectMat.SetFloat("FadeValue", t.CurrentValue); };
             menuEffectObj.Tween("MenuEffectDown", 3f, 0f, 0.5f, TweenScaleFunctions.Linear, updateEffect, (t) => {
                 StateStack.Pop();
             });
+            pauseMenuData.topMenuAnimationData.GenerateReverseTween(pauseMenuData.topMenu, "PokemonMenuAnimate",
+            (t) => pauseMenuData.topMenu.transform.position = t.CurrentValue);
         }
     }
 }
