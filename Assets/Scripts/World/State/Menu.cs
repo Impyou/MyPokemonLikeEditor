@@ -64,8 +64,9 @@ public class Menu : State
             (t) => pauseMenuData.topMenu.transform.position = t.CurrentValue);
             pauseMenuData.botMenuAnimationData.GenerateReverseTween(pauseMenuData.botMenu, "PokemonBotMenuAnimate",
             (t) => pauseMenuData.botMenu.transform.position = t.CurrentValue);
+            pauseMenuData.Close();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             pauseMenuData.Move(Direction.LEFT);
         }

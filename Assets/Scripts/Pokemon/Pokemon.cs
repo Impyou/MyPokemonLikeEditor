@@ -1,3 +1,4 @@
+using DigitalRuby.Tween;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -99,5 +100,17 @@ public class Pokemon : MonoBehaviour
         if(ExpBar != null)
             ExpBar.shouldDraw = true;
         HpBar.shouldDraw = true;
+    }
+
+    public void AnimatePokeSpawn()
+    {
+        var mat = GetComponent<SpriteRenderer>().material;
+        gameObject.Tween("PokeSpawn", 0f, 1.57f, 0.5f, TweenScaleFunctions.Linear, (t) => { mat.SetFloat("_TimeStamp", t.CurrentValue); });
+    }
+
+    public void AnimatePokeBack()
+    {
+        var mat = GetComponent<SpriteRenderer>().material;
+        gameObject.Tween("PokeBack", 1.57f, 0f, 0.5f, TweenScaleFunctions.Linear, (t) => { mat.SetFloat("_TimeStamp", t.CurrentValue); });
     }
 }

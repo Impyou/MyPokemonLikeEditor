@@ -43,6 +43,11 @@ public class PauseMenuData : MonoBehaviour
         }
     }
 
+    public void Close()
+    {
+        StopMenuShader();
+    }
+
     public bool isOut(int cursor)
     {
         return cursor < 0 || cursor > menuItems.Length - 1; 

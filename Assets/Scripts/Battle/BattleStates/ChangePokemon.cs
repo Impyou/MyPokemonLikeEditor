@@ -22,9 +22,12 @@ public class ChangePokemon : State
 
     public void Init()
     {
+        controller.pokemon.AnimatePokeBack();
         StateStack.Push(new Textbox($"Come back {controller.GetName(controller.GetCurrentPokemonIndex())} !", Textbox.TargetTextbox.BATTLE_TEXTBOX, () =>
         {
             StateStack.Push(new Textbox($"Go {controller.GetName(newPokemonIndex)} !", Textbox.TargetTextbox.BATTLE_TEXTBOX));
+            controller.SetPokemon(newPokemonIndex);
+            controller.pokemon.AnimatePokeSpawn();
         }));
         
     }
@@ -32,7 +35,6 @@ public class ChangePokemon : State
     public void Update()
     {
         StateStack.Pop();
-        controller.SetPokemon(newPokemonIndex);
         callback.Invoke();
     }
 }

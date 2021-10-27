@@ -56,6 +56,7 @@ public class InitializeBattle : State
         battleStationAnimationAlly.GenerateTween(battleStationAlly, "BattleStationAlly", (t) =>
         {
             battleStationAlly.transform.position = t.CurrentValue;
+            pokemonAlly.GetComponent<Pokemon>().AnimatePokeSpawn();
         }, (t) => numberFinishedAnimation += 1);
         battleStationAnimationOpponent.GenerateTween(battleStationOpponent, "BattleStationOp", (t) =>
         {

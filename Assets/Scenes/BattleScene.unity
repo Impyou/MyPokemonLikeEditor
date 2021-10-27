@@ -863,7 +863,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 94f79de54a8e4364492fff7aab058c9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1092,6 +1092,7 @@ MonoBehaviour:
   barWidth: 196.2
   color: {r: 1, g: 1, b: 1, a: 1}
   pos: {x: 100.5, y: 169.6}
+  shouldDraw: 0
 --- !u!4 &915827650
 Transform:
   m_ObjectHideFlags: 0
@@ -1125,6 +1126,7 @@ MonoBehaviour:
   barWidth: 196.2
   color: {r: 0, g: 0.94169235, b: 1, a: 1}
   pos: {x: 100.5, y: 188.68}
+  shouldDraw: 0
 --- !u!1 &963344969
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,6 +2165,7 @@ MonoBehaviour:
   barWidth: 118.2
   color: {r: 1, g: 1, b: 1, a: 1}
   pos: {x: 662.41, y: 53.2}
+  shouldDraw: 0
 --- !u!1 &1868632365
 GameObject:
   m_ObjectHideFlags: 0
