@@ -5,17 +5,25 @@ using UnityEngine;
 public class SelectPokemonMenu : State
 {
 
-    GameObject selectPokemonMenu;
+    SelectMenuUI selectPokemonUI;
+    PokemonParty party;
+
+    public SelectPokemonMenu(PokemonParty party)
+    {
+        this.party = party;
+    }
 
     public void End()
     {
-        selectPokemonMenu.SetActive(false);
+        selectPokemonUI.gameObject.SetActive(false);
     }
 
     public void Init()
     {
-        selectPokemonMenu = WorldUI.GetGameObject("SelectPokemonMenu");
-        selectPokemonMenu.SetActive(true);
+        selectPokemonUI = WorldUI.Get<SelectMenuUI>("SelectPokemonMenu");
+        selectPokemonUI.SetParty(party);
+        selectPokemonUI.UpdateBoxes();
+        selectPokemonUI.gameObject.SetActive(true);
     }
 
     public void Update()

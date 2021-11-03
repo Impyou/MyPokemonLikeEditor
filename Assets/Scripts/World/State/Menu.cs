@@ -20,7 +20,8 @@ public class Menu : State
 
     public void OpenTeamMenu()
     {
-        StateStack.Push(new SelectPokemonMenu());
+        var party = WorldUI.Get<Character>("Character").party;
+        StateStack.Push(new SelectPokemonMenu(party));
     }
 
     public void Init()
@@ -38,7 +39,7 @@ public class Menu : State
         var lockPokemonBotMenu = waitState.GetNewLock();
 
         Action<ITween<float>> updateEffect = (t) => { menuEffectMat.SetFloat("FadeValue", t.CurrentValue); };
-        menuEffectObj.Tween("MenuEffectDown", 0f, 3f, 0.5f, TweenScaleFunctions.Linear, updateEffect, (t)=> { lockMenu.Open(); });
+        menuEffectObj.Tween("MenuEffectDown", 0f, 1f, 0.5f, TweenScaleFunctions.Linear, updateEffect, (t)=> { lockMenu.Open(); });
 
         pauseMenuData.topMenuAnimationData.GenerateTween(pauseMenuData.topMenu, "PokemonMenuAnimate", 
         (t) => pauseMenuData.topMenu.transform.position = t.CurrentValue, 

@@ -96,6 +96,12 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_1d1ccdb0a86946b98e7c1b95432530ec: {r: 1, g: 0.96142375, b: 0, a: 0}
+    - Color_5355f939c72f4c6f89a988d6278b15c4: {r: 1, g: 0.9607844, b: 0, a: 0}
+    - Color_677bbd8ec7794602b89c49bb5278e7ce: {r: 0, g: 0, b: 0, a: 0}
+    - Color_b00f0a09e1dd45b39dfa6f94e792eb00: {r: 0, g: 0, b: 0, a: 0}
+    - Color_c3a422a8d28c4553b53e36c1fc82f33a: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_2372359add1042eb8908d03edfe00932: {r: -0.5, g: 0.5, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

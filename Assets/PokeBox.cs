@@ -17,6 +17,12 @@ public class PokeBox : MonoBehaviour
 
     public void UpdatePokebox()
     {
+        if(currentPokemon == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        gameObject.SetActive(true);
         iconRenderer.sprite = currentPokemon.icon;
         levelValueText.text = currentPokemon.level.ToString();
         pokeName.text = currentPokemon.name;

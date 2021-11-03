@@ -10,17 +10,28 @@ public class SelectMenuUI : MonoBehaviour
     public Vector2 startPos;
     public float widthSpace, heightSpace;
 
-    public void CreateBoxes()
+    public void SetParty(PokemonParty party)
     {
-        foreach(var pokemon in party.party)
-        {
-            
-        }
+        this.party = party;
     }
 
     public void OnValidate()
     {
         PositionBoxes();
+    }
+
+    public void UpdateBoxes()
+    {
+        for(int i = 0;i < pokeBoxes.Count;i++)
+        {
+            var box = pokeBoxes[i].GetComponent<PokeBox>();
+
+            if (i < party.GetLength())
+                box.SetPokemon(party.party[i]);
+            else
+                box.SetPokemon(null);
+            box.UpdatePokebox();
+        }
     }
 
     public void PositionBoxes()

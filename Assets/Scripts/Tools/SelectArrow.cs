@@ -13,6 +13,7 @@ public class SelectArrow : MonoBehaviour
     public List<Transform> posCursor;
     public enum Direction { RIGHT, LEFT, UP, DOWN };
     public Action<int>[,] callbacks;
+    public bool canMoveOnNull = true;
 
     public SelectArrow() : base()
     {
@@ -44,16 +45,18 @@ public class SelectArrow : MonoBehaviour
                 newCursor = new Vector2Int(cursor.x, Mathf.Min(cursor.y + 1, 1));
                 break;
         }
-        if (!IsOutOfRange(newCursor))
+        if (!IsOutOfRange(newCursor) && (canMoveOnNull || !IsOnNullCallback(newCursor)))
             cursor = newCursor;
         transform.position = posCursor[GetActionIndex(cursor)].position;
     }
+
+    bool IsOnNullCallback(Vector2Int pos) => callbacks[pos.x, pos.y] == null;
+    
 
     bool IsOutOfRange(Vector2Int pos)
     {
         var index = GetActionIndex(pos);
         return index < 0 || index > numberActions - 1;
-
     }
 
     public int GetActionIndex(Vector2Int targetCursor)

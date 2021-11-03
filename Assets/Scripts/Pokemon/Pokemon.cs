@@ -81,7 +81,6 @@ public class Pokemon : MonoBehaviour
     public void SetPosition(Vector2 position)
     {
         transform.position = position;
-        Debug.Log(position);
     }
 
     public Vector2 GetPosition()
@@ -96,9 +95,15 @@ public class Pokemon : MonoBehaviour
 
     public void SetGUIActive()
     {
-        if(ExpBar != null)
+        HpBar.UpdateData();
+
+        if (ExpBar != null)
+        {
             ExpBar.shouldDraw = true;
+            ExpBar.UpdateData();
+        }
         HpBar.shouldDraw = true;
+        
     }
 
     public void AnimatePokeSpawn()

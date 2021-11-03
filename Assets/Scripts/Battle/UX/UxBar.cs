@@ -7,7 +7,6 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class UxBar : MonoBehaviour
 {
-    public Vector2 offset;
     public float maxValue = 100f;
     public float currentValue = 100f;
     public float startValue = 0f;
@@ -22,30 +21,12 @@ public class UxBar : MonoBehaviour
     private Rect currentRect;
     private Rect fullBarRect;
 
-    public Vector2 pos;
     public bool shouldDraw = false;
+    Vector2 pos;
 
     public void Start()
     {
-        currentRect = new Rect(pos + offset,
-                        new Vector2(ComputeCurrentRate() * barWidth / 100,barHeight)
-                        );
-
-        fullBarRect = new Rect(pos + offset,
-                        new Vector2(barWidth, barHeight)
-                        );
-
-
-        currentTexture = new Texture2D(1, 1);
-        currentTexture.wrapMode = TextureWrapMode.Clamp;
-        currentTexture.SetPixel(1, 1, color);
-        currentTexture.Apply();
-
-        fullBarTexture = new Texture2D(1, 1);
-        fullBarTexture.wrapMode = TextureWrapMode.Clamp;
-        fullBarTexture.SetPixel(1, 1, Color.grey);
-        fullBarTexture.Apply();
-
+        UpdateData();
     }
 
     public void OnGUI()
@@ -59,8 +40,17 @@ public class UxBar : MonoBehaviour
         }
     }
 
-    public void OnValidate()
+    public Vector2 GetScreenPos()
     {
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        screenPos.y = Screen.height - screenPos.y;
+        return screenPos ;
+    }
+
+    public void UpdateData()
+    {
+        pos = GetScreenPos();
+        Debug.Log($"update data new pos : { pos }");
         fullBarTexture = new Texture2D(1, 1);
         fullBarTexture.wrapMode = TextureWrapMode.Clamp;
         fullBarTexture.SetPixel(1, 1, Color.grey);
@@ -76,11 +66,11 @@ public class UxBar : MonoBehaviour
 
     public void UpdateUX()
     {
-        currentRect = new Rect(pos + offset,
+        currentRect = new Rect(pos,
                         new Vector2(ComputeCurrentRate() * barWidth / 100, barHeight)
                         );
 
-        fullBarRect = new Rect(pos + offset,
+        fullBarRect = new Rect(pos,
                         new Vector2(barWidth, barHeight)
                         );
 
@@ -90,7 +80,7 @@ public class UxBar : MonoBehaviour
     {
         this.currentValue = currentValue;
         
-        currentRect = new Rect(pos + offset,
+        currentRect = new Rect(pos,
                         new Vector2(ComputeCurrentRate() * barWidth / 100, barHeight)
                         );
     }

@@ -9,6 +9,7 @@ public class SelectMove : State
     SelectArrow selectArrowMove;
     MoveBar moveBar;
     MoveDictionnary moveDictionnary;
+
     public void Init()
     {
         moveDictionnary = Resources.Load<MoveDictionnary>("PokemonMove");
@@ -34,6 +35,7 @@ public class SelectMove : State
         }
         
         selectArrowMove.Init(new Action<int>[,] { { AttackCallbacks[0], AttackCallbacks[2] }, { AttackCallbacks[1], AttackCallbacks[3] } });
+        selectArrowMove.canMoveOnNull = false;
     }
 
     public void PlayMove(int moveId)
