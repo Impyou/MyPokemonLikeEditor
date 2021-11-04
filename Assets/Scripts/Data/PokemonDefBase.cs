@@ -3,14 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class PokemonDefBase
+[Serializable, CreateAssetMenu(menuName = "PokeData/Pokemon")]
+public class PokemonDefBase : ScriptableObject
 {
+    public string name;
     public enum ExpFamily { SLOW, MIDDLE, FAST}
     public PokemonStats v;
     public float expMultiplier;
     public ExpFamily expFamily;
-    
+
+    public Sprite backSprite;
+    public Sprite frontSprite;
+    public Sprite icon;
+
     public int GetNeededExpLevel(int level)
     {
         switch(expFamily)
@@ -54,4 +59,10 @@ public class PokemonDefBase
 
     public PokemonDefBase()
     {}
+
+    public PokemonDef GeneratePokemonDef(int level, int[] moveIds)
+    {
+        var pokemonDef = new PokemonDef(name, level, this, new PokemonStats(), new PokemonStats(), "", "", moveIds);
+        return pokemonDef;
+    }
 }

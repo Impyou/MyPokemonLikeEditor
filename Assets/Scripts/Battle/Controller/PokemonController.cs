@@ -35,7 +35,7 @@ public class PokemonController : MonoBehaviour
     public void SetPokemonSprite()
     {
         var spriteRenderer = pokemon.GetComponent<SpriteRenderer>();
-        var targetSprite = isFace ? pokemon.def.frontSprite : pokemon.def.backSprite;
+        var targetSprite = isFace ? pokemon.def.GetFrontSprite() : pokemon.def.GetBackSprite();
         spriteRenderer.sprite = targetSprite; 
     }
 

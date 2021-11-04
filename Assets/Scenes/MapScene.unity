@@ -7341,22 +7341,10 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
-    defBase:
-      v:
-        hp: 39
-        attq: 52
-        attqSpe: 43
-        def: 60
-        defSpe: 50
-        speed: 65
-      expMultiplier: 65
-      expFamily: 0
+    defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
     moveIDs: 00000000
-    backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
-    frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
-    icon: {fileID: 21300000, guid: 3bc7316bba5230b46b81fc9cfe5f2b2b, type: 3}
     shouldLevelUp: 0
   iconRenderer: {fileID: 1040307974}
   levelValueText: {fileID: 777569473}
@@ -7953,22 +7941,10 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
-    defBase:
-      v:
-        hp: 39
-        attq: 52
-        attqSpe: 43
-        def: 60
-        defSpe: 50
-        speed: 65
-      expMultiplier: 65
-      expFamily: 0
+    defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
     moveIDs: 00000000
-    backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
-    frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
-    icon: {fileID: 21300000, guid: 3bc7316bba5230b46b81fc9cfe5f2b2b, type: 3}
     shouldLevelUp: 0
   iconRenderer: {fileID: 1093809168}
   levelValueText: {fileID: 2127312453}
@@ -8999,22 +8975,10 @@ MonoBehaviour:
         def: 0
         defSpe: 0
         speed: 0
-      defBase:
-        v:
-          hp: 45
-          attq: 49
-          attqSpe: 49
-          def: 65
-          defSpe: 65
-          speed: 45
-        expMultiplier: 0
-        expFamily: 0
+      defBase: {fileID: 11400000, guid: 8ccc2f9e55250f4488eeb8aa4bcc6907, type: 2}
       nature: 
       ability: 
       moveIDs: 02000000
-      backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
-      frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
-      icon: {fileID: 21300000, guid: cda97b921ae7d7a4b8831419b4a0e47e, type: 3}
       shouldLevelUp: 0
   moveAnimationTime: 0.15
   playerAnimationDirs:
@@ -9924,22 +9888,10 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
-    defBase:
-      v:
-        hp: 39
-        attq: 52
-        attqSpe: 43
-        def: 60
-        defSpe: 50
-        speed: 65
-      expMultiplier: 65
-      expFamily: 0
+    defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
     moveIDs: 00000000
-    backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
-    frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
-    icon: {fileID: 21300000, guid: 3bc7316bba5230b46b81fc9cfe5f2b2b, type: 3}
     shouldLevelUp: 0
   iconRenderer: {fileID: 1769426810}
   levelValueText: {fileID: 1376048082}
@@ -10127,22 +10079,10 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
-    defBase:
-      v:
-        hp: 39
-        attq: 52
-        attqSpe: 43
-        def: 60
-        defSpe: 50
-        speed: 65
-      expMultiplier: 65
-      expFamily: 0
+    defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
     moveIDs: 00000000
-    backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
-    frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
-    icon: {fileID: 21300000, guid: 3bc7316bba5230b46b81fc9cfe5f2b2b, type: 3}
     shouldLevelUp: 0
   iconRenderer: {fileID: 1546621928}
   levelValueText: {fileID: 182659356}
@@ -12018,22 +11958,10 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
-    defBase:
-      v:
-        hp: 39
-        attq: 52
-        attqSpe: 43
-        def: 60
-        defSpe: 50
-        speed: 65
-      expMultiplier: 65
-      expFamily: 0
+    defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
     moveIDs: 00000000
-    backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
-    frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
-    icon: {fileID: 21300000, guid: 3bc7316bba5230b46b81fc9cfe5f2b2b, type: 3}
     shouldLevelUp: 0
   iconRenderer: {fileID: 853294432}
   levelValueText: {fileID: 73303297}
@@ -12442,22 +12370,10 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
-    defBase:
-      v:
-        hp: 39
-        attq: 52
-        attqSpe: 43
-        def: 60
-        defSpe: 50
-        speed: 65
-      expMultiplier: 65
-      expFamily: 0
+    defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
     moveIDs: 00000000
-    backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
-    frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
-    icon: {fileID: 21300000, guid: 3bc7316bba5230b46b81fc9cfe5f2b2b, type: 3}
     shouldLevelUp: 0
   iconRenderer: {fileID: 211030078}
   levelValueText: {fileID: 1482071935}
@@ -12544,98 +12460,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonEncounterInfos:
-  - pokemon:
-      name: Bulbizarre
-      level: 5
-      currentExp: 0
-      totalExpToLevelUp: 0
-      expCurrentLevel: 0
-      hpCurrent: 150
-      currentStats:
-        hp: 0
-        attq: 0
-        attqSpe: 0
-        def: 0
-        defSpe: 0
-        speed: 0
-      effortValueStats:
-        hp: 0
-        attq: 0
-        attqSpe: 0
-        def: 0
-        defSpe: 0
-        speed: 0
-      individualValueStats:
-        hp: 0
-        attq: 0
-        attqSpe: 0
-        def: 0
-        defSpe: 0
-        speed: 0
-      defBase:
-        v:
-          hp: 45
-          attq: 49
-          attqSpe: 49
-          def: 65
-          defSpe: 65
-          speed: 45
-        expMultiplier: 64
-        expFamily: 0
-      nature: 
-      ability: 
-      moveIDs: 01000000
-      backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
-      frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
-      icon: {fileID: 21300000, guid: cda97b921ae7d7a4b8831419b4a0e47e, type: 3}
-      shouldLevelUp: 0
+  - pokemonDefBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     rate: 5
-  - pokemon:
-      name: Charmander
-      level: 5
-      currentExp: 0
-      totalExpToLevelUp: 0
-      expCurrentLevel: 0
-      hpCurrent: 160
-      currentStats:
-        hp: 0
-        attq: 0
-        attqSpe: 0
-        def: 0
-        defSpe: 0
-        speed: 0
-      effortValueStats:
-        hp: 0
-        attq: 0
-        attqSpe: 0
-        def: 0
-        defSpe: 0
-        speed: 0
-      individualValueStats:
-        hp: 0
-        attq: 0
-        attqSpe: 0
-        def: 0
-        defSpe: 0
-        speed: 0
-      defBase:
-        v:
-          hp: 39
-          attq: 52
-          attqSpe: 43
-          def: 60
-          defSpe: 50
-          speed: 65
-        expMultiplier: 65
-        expFamily: 0
-      nature: 
-      ability: 
-      moveIDs: 00000000
-      backSprite: {fileID: 21300000, guid: 108cae3c97edc05489e24095c790bfdc, type: 3}
-      frontSprite: {fileID: 21300000, guid: 1042f758684535b44ab7e133c8ecb9d5, type: 3}
-      icon: {fileID: 21300000, guid: 3bc7316bba5230b46b81fc9cfe5f2b2b, type: 3}
-      shouldLevelUp: 0
-    rate: 5
+    pokemonMinLevel: 6
+    pokemonMaxLevel: 8
+  - pokemonDefBase: {fileID: 11400000, guid: 8ccc2f9e55250f4488eeb8aa4bcc6907, type: 2}
+    rate: 3
+    pokemonMinLevel: 5
+    pokemonMaxLevel: 9
   generateListSize: 3
   generatePokemonEncounter: []
 --- !u!4 &2023539433

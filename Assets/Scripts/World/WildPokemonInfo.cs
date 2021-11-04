@@ -8,8 +8,17 @@ public class WildPokemonInfo : MonoBehaviour
     [Serializable]
     public struct PokemonEncounterInfo
     {
-        public PokemonDef pokemon;
+        public PokemonDefBase pokemonDefBase;
         public int rate;
+        [Range(1, 100)]
+        public int pokemonMinLevel;
+        [Range(1, 100)]
+        public int pokemonMaxLevel;
+
+        public int PickRandomLevel()
+        {
+            return UnityEngine.Random.Range(pokemonMinLevel, pokemonMaxLevel + 1);
+        }
     }
 
     public PokemonEncounterInfo[] pokemonEncounterInfos;
@@ -31,8 +40,9 @@ public class WildPokemonInfo : MonoBehaviour
 
     public PokemonDef GeneratePokemon()
     {
-        var newPokemon = new PokemonDef(pokemonEncounterInfos[pokemonEncounterInfos.Length - 1].pokemon);
+        var selectedEncounterInfo = pokemonEncounterInfos[pokemonEncounterInfos.Length - 1];
         var totalRate = 0;
+
         foreach (var pokemonEncounterInfo in pokemonEncounterInfos)
         {
             totalRate += pokemonEncounterInfo.rate;
@@ -44,10 +54,12 @@ public class WildPokemonInfo : MonoBehaviour
             cumulativeRate += (pokemonEncounterInfo.rate / (float)totalRate);
             if (randomPickValue < cumulativeRate)
             {
-                newPokemon = new PokemonDef(pokemonEncounterInfo.pokemon);
+                selectedEncounterInfo = pokemonEncounterInfo;
                 break;
             }
         }
+
+        var newPokemon = selectedEncounterInfo.pokemonDefBase.GeneratePokemonDef(selectedEncounterInfo.PickRandomLevel(), new int[] { 0 });
         newPokemon.InitNew();
         return newPokemon;
     }

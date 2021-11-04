@@ -25,9 +25,6 @@ public class PokemonDef
     public string ability;
 
     public int[] moveIDs;
-    public Sprite backSprite;
-    public Sprite frontSprite;
-    public Sprite icon;
 
     public bool shouldLevelUp = false;
 
@@ -38,10 +35,7 @@ public class PokemonDef
                       PokemonStats EV,
                       string nature,
                       string ability,
-                      int[] moveIDs,
-                      Sprite backSprite,
-                      Sprite frontSprite,
-                      Sprite icon
+                      int[] moveIDs
                       )
     {
         this.name = name;
@@ -52,9 +46,6 @@ public class PokemonDef
         this.nature = nature;
         this.ability = ability;
         this.moveIDs = moveIDs;
-        this.backSprite = backSprite;
-        this.frontSprite = frontSprite;
-        this.icon = icon;
 
         ComputeStats();
         this.hpCurrent = this.currentStats.hp;
@@ -67,10 +58,7 @@ public class PokemonDef
                                                   original.effortValueStats,
                                                   original.nature,
                                                   original.ability,
-                                                  original.moveIDs,
-                                                  original.backSprite,
-                                                  original.frontSprite,
-                                                  original.icon)
+                                                  original.moveIDs)
     {
 
     }
@@ -173,5 +161,20 @@ public class PokemonDef
     public void SetExpToLevel()
     {
         currentExp = defBase.GetNeededExpLevel(level);
+    }
+
+    public Sprite GetIcon()
+    {
+        return defBase.icon;
+    }
+
+    public Sprite GetFrontSprite()
+    {
+        return defBase.frontSprite;
+    }
+
+    public Sprite GetBackSprite()
+    {
+        return defBase.backSprite;
     }
 }

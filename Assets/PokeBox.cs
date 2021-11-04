@@ -23,7 +23,7 @@ public class PokeBox : MonoBehaviour
             return;
         }
         gameObject.SetActive(true);
-        iconRenderer.sprite = currentPokemon.icon;
+        iconRenderer.sprite = currentPokemon.GetIcon();
         levelValueText.text = currentPokemon.level.ToString();
         pokeName.text = currentPokemon.name;
         hpBar.ChangeValues(currentPokemon.hpCurrent, currentPokemon.currentStats.hp);
