@@ -116,13 +116,18 @@ public class Pokemon : MonoBehaviour
         def.Heal(rate);
     }
 
-    public void InflictDamage(int damagePower, PokemonDef attacker)
+    public void InflictDamage(int damagePower, PokemonDef attacker, AttqTypes attqType, int effectivenessMultiplier)
     {
-        def.InflictDamage(damagePower, attacker);
+        def.InflictDamage(damagePower, attacker, attqType, effectivenessMultiplier);
     }
 
     public void ApplyModifier(StatModifier modifier)
     {
         def.ApplyModifier(modifier);
+    }
+
+    public PokemonType[] GetPokemonTypes()
+    {
+        return def.GetPokemonTypes();
     }
 }

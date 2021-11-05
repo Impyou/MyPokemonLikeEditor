@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable, CreateAssetMenu(menuName = "PokeData/Pokemon")]
 public class PokemonDefBase : ScriptableObject
 {
+    public PokemonType[] types;
     public enum ExpFamily { SLOW, MIDDLE, FAST}
     public PokemonStats v;
     public float expMultiplier;

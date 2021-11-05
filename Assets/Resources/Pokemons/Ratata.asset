@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d07ecbaf171d1b43a254e7bf7d8e1fd, type: 3}
-  m_Name: Bulbasaur
+  m_Name: Ratata
   m_EditorClassIdentifier: 
-  types: 03000000
+  types: 00000000
   v:
-    hp: 45
-    attq: 49
-    attqSpe: 250
-    def: 65
-    defSpe: 65
-    speed: 45
-  expMultiplier: 64
+    hp: 30
+    attq: 56
+    attqSpe: 35
+    def: 25
+    defSpe: 35
+    speed: 72
+  expMultiplier: 51
   expFamily: 2
-  backSprite: {fileID: 21300000, guid: 603b8e15b78457b40a424e9f07d24e49, type: 3}
-  frontSprite: {fileID: 21300000, guid: 0f8cd592767912f41a3bfe65f2aad3d5, type: 3}
-  icon: {fileID: 21300000, guid: cda97b921ae7d7a4b8831419b4a0e47e, type: 3}
+  backSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: adf1a2a4a6ca1474ea40d02d02811d91, type: 3}
+  icon: {fileID: 0}

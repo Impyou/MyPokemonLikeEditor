@@ -11,8 +11,11 @@ public class HitMove : Move
 
     public override void Play(Pokemon defender, Pokemon attacker)
     {
+        var typeChart = Resources.Load<TypeChart>("Data/Battle/BasicTypeChart");
+        var effectiveMultiplier = typeChart.GetMultiplier(pokemonType, defender.GetPokemonTypes()[0]);
+        Debug.Log($"Effectiveness {effectiveMultiplier}");
         var startHp = defender.GetHp();
-        defender.InflictDamage(damage, attacker.def);
+        defender.InflictDamage(damage, attacker.def, attqType, effectiveMultiplier);
         var endHp = defender.GetHp();
         SoundManager.__instance__.PlaySoundEffect(BattleUI.GetSound("DamageSound"));
         // TODO : Maybe use a factory

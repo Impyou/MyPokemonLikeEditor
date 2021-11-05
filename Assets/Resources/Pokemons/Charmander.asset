@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d07ecbaf171d1b43a254e7bf7d8e1fd, type: 3}
   m_Name: Charmander
   m_EditorClassIdentifier: 
-  name: Charmander
+  types: 01000000
   v:
     hp: 39
     attq: 52

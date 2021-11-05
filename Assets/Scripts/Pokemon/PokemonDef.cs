@@ -146,7 +146,15 @@ public class PokemonDef
         }
     }
 
-    public void InflictDamage(int damagePower, PokemonDef attacker)
+    public void InflictDamage(int damagePower, PokemonDef attacker, AttqTypes attqType, int effectivenessMultiplier)
+    {
+        if (attqType == AttqTypes.PHYSICAL)
+            InflictPhysicalDamage(damagePower, attacker, effectivenessMultiplier);
+        else
+            InflictSpecialDamage(damagePower, attacker, effectivenessMultiplier);
+    }
+
+    public void InflictPhysicalDamage(int damagePower, PokemonDef attacker, int effectivenessMultiplier)
     {
         var attqMultiplierNom = 2 + (attacker.currentStatsModifiers.attq > 0 ? attacker.currentStatsModifiers.attq : 0);
         var attqMultiplierDenom = 2 - (attacker.currentStatsModifiers.attq < 0 ? attacker.currentStatsModifiers.attq : 0);
@@ -154,8 +162,25 @@ public class PokemonDef
         var defMultiplierDenom = 2 - (currentStatsModifiers.def < 0 ? currentStatsModifiers.def : 0);
 
 
-        var damage = ((2 * level / 5) + 2) * damagePower * attacker.currentStats.attq * attqMultiplierNom * defMultiplierDenom / 
+        var damage = ((2 * level / 5) + 2) * damagePower * attacker.currentStats.attq * attqMultiplierNom * defMultiplierDenom /
                       (50 * currentStats.def * attqMultiplierDenom * defMultiplierNom) + 2;
+
+        damage = damage * effectivenessMultiplier / 100;
+        hpCurrent -= damage;
+        hpCurrent = Mathf.Max(hpCurrent, 0);
+    }
+
+    public void InflictSpecialDamage(int damagePower, PokemonDef attacker, int effectivenessMultiplier)
+    {
+        var attqMultiplierNom = 2 + (attacker.currentStatsModifiers.attqSpe > 0 ? attacker.currentStatsModifiers.attqSpe : 0);
+        var attqMultiplierDenom = 2 - (attacker.currentStatsModifiers.attqSpe < 0 ? attacker.currentStatsModifiers.attqSpe : 0);
+        var defMultiplierNom = 2 + (currentStatsModifiers.defSpe > 0 ? currentStatsModifiers.defSpe : 0);
+        var defMultiplierDenom = 2 - (currentStatsModifiers.defSpe < 0 ? currentStatsModifiers.defSpe : 0);
+
+
+        var damage = ((2 * level / 5) + 2) * damagePower * attacker.currentStats.attqSpe * attqMultiplierNom * defMultiplierDenom /
+                      (50 * currentStats.defSpe * attqMultiplierDenom * defMultiplierNom) + 2;
+        damage = damage * effectivenessMultiplier / 100;
 
         hpCurrent -= damage;
         hpCurrent = Mathf.Max(hpCurrent, 0);
@@ -260,5 +285,10 @@ public class PokemonDef
     public Sprite GetBackSprite()
     {
         return defBase.backSprite;
+    }
+
+    public PokemonType[] GetPokemonTypes()
+    {
+        return defBase.types;
     }
 }

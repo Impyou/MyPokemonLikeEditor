@@ -9003,9 +9003,9 @@ MonoBehaviour:
       nature: 
       ability: 
       moves:
-      - {fileID: 11400000, guid: 849a84dd91b87f14493e05c32bc0705b, type: 2}
+      - {fileID: 11400000, guid: bc6f224982ceb5c45981a1affc345334, type: 2}
       - {fileID: 11400000, guid: a77277386d29f1a42912645fb17488e3, type: 2}
-      - {fileID: 11400000, guid: 533546514b7d83345abbb91fb745cb73, type: 2}
+      - {fileID: 11400000, guid: 849a84dd91b87f14493e05c32bc0705b, type: 2}
       - {fileID: 11400000, guid: 5bc45235e7fa5db40b8cc9826c74fee0, type: 2}
       shouldLevelUp: 0
   moveAnimationTime: 0.15
@@ -12524,6 +12524,7 @@ MonoBehaviour:
     pokemonDefBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     availableMove:
     - {fileID: 11400000, guid: bc6f224982ceb5c45981a1affc345334, type: 2}
+    - {fileID: 11400000, guid: f3b2f01688cc08744848fa6b3df8fb05, type: 2}
     rate: 5
     pokemonMinLevel: 6
     pokemonMaxLevel: 8
@@ -12536,6 +12537,14 @@ MonoBehaviour:
     rate: 3
     pokemonMinLevel: 5
     pokemonMaxLevel: 9
+  - name: Ratata
+    pokemonDefBase: {fileID: 11400000, guid: 6194e178c4ec5fd408dfc57572d703b7, type: 2}
+    availableMove:
+    - {fileID: 11400000, guid: bc6f224982ceb5c45981a1affc345334, type: 2}
+    - {fileID: 11400000, guid: a77277386d29f1a42912645fb17488e3, type: 2}
+    rate: 1
+    pokemonMinLevel: 4
+    pokemonMaxLevel: 7
   generateListSize: 3
   generatePokemonEncounter: []
 --- !u!4 &2023539433
