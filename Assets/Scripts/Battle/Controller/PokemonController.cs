@@ -6,7 +6,7 @@ public class PokemonController : MonoBehaviour
 {
     public Pokemon pokemon;
     protected bool isFace;
-    protected int[] currentPokemonMoveIds;
+    protected Move[] currentPokemonMoves;
 
     public PokemonParty pokemonParty;
     public int currentPokemonIndex = -1;
@@ -19,10 +19,12 @@ public class PokemonController : MonoBehaviour
     public void SetPokemon(int partyId)
     {
         currentPokemonIndex = partyId;
-        pokemon.def = pokemonParty.party[partyId];
-        pokemon.def.ComputeStats();
+        var newPokemon = pokemonParty.party[currentPokemonIndex];
+        newPokemon.ComputeStats();
+        newPokemon.Reset();
+        pokemon.def = newPokemon;
         pokemon.ResetUX();
-        currentPokemonMoveIds = pokemon.GetMoveIds();
+        currentPokemonMoves = pokemon.GetMoves();
         SetPokemonSprite();
     }
         

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: PokemonMove
   m_EditorClassIdentifier: 
   moves:
-  - name: Charge
-    damage: 20
-  - name: Fouet Liane
-    damage: 40
-  - name: UltraBullshit
-    damage: 1000
+  - {fileID: 11400000, guid: bc6f224982ceb5c45981a1affc345334, type: 2}
+  - {fileID: 11400000, guid: 849a84dd91b87f14493e05c32bc0705b, type: 2}
+  - {fileID: 11400000, guid: d49093f12e48d804e94535da76ff6e9a, type: 2}
+  - {fileID: 11400000, guid: 5bc45235e7fa5db40b8cc9826c74fee0, type: 2}

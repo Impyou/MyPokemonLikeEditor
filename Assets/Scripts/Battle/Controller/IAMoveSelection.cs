@@ -12,10 +12,10 @@ public class IAMoveSelection
     }
 
     // Return a moveId
-    public int ChooseAttack()
+    public Move ChooseAttack()
     {
-        var moveIds = ownedPokemon.GetMoveIds();
-        var rnd = Random.Range(0, moveIds.Length);
-        return moveIds[rnd];
+        var moves = ownedPokemon.GetMoves();
+        var rnd = Random.Range(0, moves.Length);
+        return moves[rnd];
     }
 }

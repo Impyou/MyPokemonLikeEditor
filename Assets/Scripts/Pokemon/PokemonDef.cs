@@ -4,6 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
+public struct PokemonStatsModifiers
+{
+    public int attq;
+    public int attqSpe;
+    public int def;
+    public int defSpe;
+    public int speed;
+    public int accuracy;
+    public int evasiness;
+
+    public void Reset()
+    {
+        attq = 0;
+        attqSpe = 0;
+        def = 0;
+        defSpe = 0;
+        speed = 0;
+        accuracy = 0;
+        evasiness = 0;
+    }
+}
+
+[Serializable]
 public class PokemonDef
 {
     public string name;
@@ -19,12 +42,13 @@ public class PokemonDef
     public PokemonStats currentStats;
     public PokemonStats effortValueStats;
     public PokemonStats individualValueStats;
+    public PokemonStatsModifiers currentStatsModifiers;
     public PokemonDefBase defBase;
 
     public string nature;
     public string ability;
 
-    public int[] moveIDs;
+    public Move[] moves;
 
     public bool shouldLevelUp = false;
 
@@ -35,7 +59,7 @@ public class PokemonDef
                       PokemonStats EV,
                       string nature,
                       string ability,
-                      int[] moveIDs
+                      Move[] moves
                       )
     {
         this.name = name;
@@ -45,7 +69,7 @@ public class PokemonDef
         this.effortValueStats = EV;
         this.nature = nature;
         this.ability = ability;
-        this.moveIDs = moveIDs;
+        this.moves = moves;
 
         ComputeStats();
         this.hpCurrent = this.currentStats.hp;
@@ -58,7 +82,7 @@ public class PokemonDef
                                                   original.effortValueStats,
                                                   original.nature,
                                                   original.ability,
-                                                  original.moveIDs)
+                                                  original.moves)
     {
 
     }
@@ -68,6 +92,11 @@ public class PokemonDef
         ComputeStats();
         FullHeal();
         SetExpToLevel();
+    }
+
+    public void Reset()
+    {
+        currentStatsModifiers.Reset();
     }
 
     public void ComputeStats()
@@ -82,6 +111,61 @@ public class PokemonDef
         expCurrentLevel = defBase.GetNeededExpLevel(level);
     }
 
+    public void ApplyModifier(StatModifier modifier)
+    {
+        switch(modifier.type)
+        {
+            case StatType.ATTQ:
+                currentStatsModifiers.attq += modifier.level;
+                currentStatsModifiers.attq = Mathf.Clamp(currentStatsModifiers.attq, -6, 6);
+                break;
+            case StatType.ATTQ_SPE:
+                currentStatsModifiers.attqSpe += modifier.level;
+                currentStatsModifiers.attqSpe = Mathf.Clamp(currentStatsModifiers.attqSpe, -6, 6);
+                break;
+            case StatType.DEF:
+                currentStatsModifiers.def += modifier.level;
+                currentStatsModifiers.def = Mathf.Clamp(currentStatsModifiers.def, -6, 6);
+                break;
+            case StatType.DEF_SPE:
+                currentStatsModifiers.defSpe += modifier.level;
+                currentStatsModifiers.defSpe = Mathf.Clamp(currentStatsModifiers.defSpe, -6, 6);
+                break;
+            case StatType.SPEED:
+                currentStatsModifiers.speed += modifier.level;
+                currentStatsModifiers.speed = Mathf.Clamp(currentStatsModifiers.speed, -6, 6);
+                break;
+            case StatType.EVASINESS:
+                currentStatsModifiers.evasiness += modifier.level;
+                currentStatsModifiers.evasiness = Mathf.Clamp(currentStatsModifiers.evasiness, -6, 6);
+                break;
+            case StatType.ACCURACY:
+                currentStatsModifiers.accuracy += modifier.level;
+                currentStatsModifiers.accuracy = Mathf.Clamp(currentStatsModifiers.accuracy, -6, 6);
+                break;
+        }
+    }
+
+    public void InflictDamage(int damagePower, PokemonDef attacker)
+    {
+        var attqMultiplierNom = 2 + (attacker.currentStatsModifiers.attq > 0 ? attacker.currentStatsModifiers.attq : 0);
+        var attqMultiplierDenom = 2 - (attacker.currentStatsModifiers.attq < 0 ? attacker.currentStatsModifiers.attq : 0);
+        var defMultiplierNom = 2 + (currentStatsModifiers.def > 0 ? currentStatsModifiers.def : 0);
+        var defMultiplierDenom = 2 - (currentStatsModifiers.def < 0 ? currentStatsModifiers.def : 0);
+
+
+        var damage = ((2 * level / 5) + 2) * damagePower * attacker.currentStats.attq * attqMultiplierNom * defMultiplierDenom / 
+                      (50 * currentStats.def * attqMultiplierDenom * defMultiplierNom) + 2;
+
+        hpCurrent -= damage;
+        hpCurrent = Mathf.Max(hpCurrent, 0);
+    }
+
+    public void Heal(int rate)
+    {
+        hpCurrent += currentStats.hp * rate / 100;
+        hpCurrent = Mathf.Min(hpCurrent, currentStats.hp);
+    }
 
     public int ComputeHpFormula(int baseStat, int ev, int iv)
     {

@@ -23,14 +23,14 @@ public class SelectMove : State
         Action NoneCallback = () => { };
         Action<int>[] AttackCallbacks = new Action<int>[4] { null, null, null, null };
         var pokemonAlly = BattleUI.Get<Pokemon>("PokemonAlly");
-        for (int i = 0;i < pokemonAlly.GetMoveIds().Length; i++)
+        for (int i = 0;i < pokemonAlly.GetMoves().Length; i++)
         {
             AttackCallbacks[i] = (int cursorIndex) => {
                 actionBar.SetActive(false);
                 StateStack.Pop();
                 StateStack.Pop();
-                if (cursorIndex < pokemonAlly.GetMoveIds().Length)
-                    PlayMove(pokemonAlly.GetMoveIds()[cursorIndex]);
+                if (cursorIndex < pokemonAlly.GetMoves().Length)
+                    PlayMove(pokemonAlly.GetMoves()[cursorIndex]);
             };
         }
         
@@ -38,16 +38,16 @@ public class SelectMove : State
         selectArrowMove.canMoveOnNull = false;
     }
 
-    public void PlayMove(int moveId)
+    public void PlayMove(Move move)
     {
         var pokemonAlly = BattleUI.Get<Pokemon>("PokemonAlly");
         var pokemonOpponent = BattleUI.Get<Pokemon>("PokemonOpponent");
         IAMoveSelection IA_moveSelection = new IAMoveSelection(pokemonOpponent, pokemonAlly);
-        int IA_moveId = IA_moveSelection.ChooseAttack();
+        Move IA_move = IA_moveSelection.ChooseAttack();
         
 
-        StateStack.Push(new PlayTurn(pokemonAlly, pokemonOpponent, moveId,  () => {
-            StateStack.Push(new PlayTurn(pokemonOpponent, pokemonAlly, IA_moveId, () => { })); 
+        StateStack.Push(new PlayTurn(pokemonAlly, pokemonOpponent, move,  () => {
+            StateStack.Push(new PlayTurn(pokemonOpponent, pokemonAlly, IA_move, () => { })); 
         }));
     }
 
@@ -93,12 +93,12 @@ public class SelectMove : State
     void SetMoveName()
     {
         var pokemon = BattleData.Get<Pokemon>("PokemonAlly");
-        var moves = pokemon.GetMoveIds();
+        var moves = pokemon.GetMoves();
         string[] moveNames = new string[moves.Length];
 
         foreach (var item in moves.Select((value, i) => (value, i)))
         {
-            var name = moveDictionnary.GetName(item.value);
+            var name = item.value.name;
             moveNames[item.i] = name;
         }
         moveBar.SetMoves(moveNames);

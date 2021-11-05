@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Move
+public class Move : ScriptableObject
 {
-    public string name;
-    public int damage;
+    public virtual void Play(Pokemon defender, Pokemon attacker)
+    {}
 }

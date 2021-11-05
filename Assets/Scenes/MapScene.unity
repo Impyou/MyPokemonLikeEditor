@@ -7341,10 +7341,18 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
+    currentStatsModifiers:
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+      accuracy: 0
+      evasiness: 0
     defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
-    moveIDs: 00000000
+    moves: []
     shouldLevelUp: 0
   iconRenderer: {fileID: 1040307974}
   levelValueText: {fileID: 777569473}
@@ -7941,10 +7949,18 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
+    currentStatsModifiers:
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+      accuracy: 0
+      evasiness: 0
     defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
-    moveIDs: 00000000
+    moves: []
     shouldLevelUp: 0
   iconRenderer: {fileID: 1093809168}
   levelValueText: {fileID: 2127312453}
@@ -8975,10 +8991,22 @@ MonoBehaviour:
         def: 0
         defSpe: 0
         speed: 0
+      currentStatsModifiers:
+        attq: 0
+        attqSpe: 0
+        def: 0
+        defSpe: 0
+        speed: 0
+        accuracy: 0
+        evasiness: 0
       defBase: {fileID: 11400000, guid: 8ccc2f9e55250f4488eeb8aa4bcc6907, type: 2}
       nature: 
       ability: 
-      moveIDs: 02000000
+      moves:
+      - {fileID: 11400000, guid: 849a84dd91b87f14493e05c32bc0705b, type: 2}
+      - {fileID: 11400000, guid: a77277386d29f1a42912645fb17488e3, type: 2}
+      - {fileID: 11400000, guid: 533546514b7d83345abbb91fb745cb73, type: 2}
+      - {fileID: 11400000, guid: 5bc45235e7fa5db40b8cc9826c74fee0, type: 2}
       shouldLevelUp: 0
   moveAnimationTime: 0.15
   playerAnimationDirs:
@@ -9888,10 +9916,18 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
+    currentStatsModifiers:
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+      accuracy: 0
+      evasiness: 0
     defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
-    moveIDs: 00000000
+    moves: []
     shouldLevelUp: 0
   iconRenderer: {fileID: 1769426810}
   levelValueText: {fileID: 1376048082}
@@ -10079,10 +10115,18 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
+    currentStatsModifiers:
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+      accuracy: 0
+      evasiness: 0
     defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
-    moveIDs: 00000000
+    moves: []
     shouldLevelUp: 0
   iconRenderer: {fileID: 1546621928}
   levelValueText: {fileID: 182659356}
@@ -11958,10 +12002,18 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
+    currentStatsModifiers:
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+      accuracy: 0
+      evasiness: 0
     defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
-    moveIDs: 00000000
+    moves: []
     shouldLevelUp: 0
   iconRenderer: {fileID: 853294432}
   levelValueText: {fileID: 73303297}
@@ -12370,10 +12422,18 @@ MonoBehaviour:
       def: 0
       defSpe: 0
       speed: 0
+    currentStatsModifiers:
+      attq: 0
+      attqSpe: 0
+      def: 0
+      defSpe: 0
+      speed: 0
+      accuracy: 0
+      evasiness: 0
     defBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
     nature: 
     ability: 
-    moveIDs: 00000000
+    moves: []
     shouldLevelUp: 0
   iconRenderer: {fileID: 211030078}
   levelValueText: {fileID: 1482071935}
@@ -12460,11 +12520,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonEncounterInfos:
-  - pokemonDefBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
+  - name: Charmander
+    pokemonDefBase: {fileID: 11400000, guid: 16a5fd0cef64e3547801063c8112f5d8, type: 2}
+    availableMove:
+    - {fileID: 11400000, guid: bc6f224982ceb5c45981a1affc345334, type: 2}
     rate: 5
     pokemonMinLevel: 6
     pokemonMaxLevel: 8
-  - pokemonDefBase: {fileID: 11400000, guid: 8ccc2f9e55250f4488eeb8aa4bcc6907, type: 2}
+  - name: Bulbasaur
+    pokemonDefBase: {fileID: 11400000, guid: 8ccc2f9e55250f4488eeb8aa4bcc6907, type: 2}
+    availableMove:
+    - {fileID: 11400000, guid: bc6f224982ceb5c45981a1affc345334, type: 2}
+    - {fileID: 11400000, guid: 849a84dd91b87f14493e05c32bc0705b, type: 2}
+    - {fileID: 11400000, guid: 5bc45235e7fa5db40b8cc9826c74fee0, type: 2}
     rate: 3
     pokemonMinLevel: 5
     pokemonMaxLevel: 9

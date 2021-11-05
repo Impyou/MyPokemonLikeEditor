@@ -47,7 +47,6 @@ public class Reward : State
         isAnimated = true;
 
         Action<ITween<float>> tweenExpCallback = (t) => { pokemonAllyUI.UpdateExpBar(t.CurrentValue); };
-        Debug.Log($"current : {currentExp}, next : {nextExp}");
         SoundManager.__instance__.PlaySoundEffect(BattleUI.GetSound("GainExp"));
         pokemonAllyUI.gameObject.Tween("UpdateExp", currentExp, nextExp, 0.01f * expGainSummary.expPercent, TweenScaleFunctions.SineEaseIn, tweenExpCallback, (t) =>
         {

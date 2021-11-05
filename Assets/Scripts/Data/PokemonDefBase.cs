@@ -6,7 +6,6 @@ using UnityEngine;
 [Serializable, CreateAssetMenu(menuName = "PokeData/Pokemon")]
 public class PokemonDefBase : ScriptableObject
 {
-    public string name;
     public enum ExpFamily { SLOW, MIDDLE, FAST}
     public PokemonStats v;
     public float expMultiplier;
@@ -60,9 +59,9 @@ public class PokemonDefBase : ScriptableObject
     public PokemonDefBase()
     {}
 
-    public PokemonDef GeneratePokemonDef(int level, int[] moveIds)
+    public PokemonDef GeneratePokemonDef(int level, Move[] moves)
     {
-        var pokemonDef = new PokemonDef(name, level, this, new PokemonStats(), new PokemonStats(), "", "", moveIds);
+        var pokemonDef = new PokemonDef(name, level, this, new PokemonStats(), new PokemonStats(), "", "", moves);
         return pokemonDef;
     }
 }

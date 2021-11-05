@@ -37,14 +37,22 @@ public class SelectAction : State
             StateStack.Pop();
             StateStack.Push(new CatchingState(0.5f, player, opponent, callbackOnSuccess: () => { }, callbackOnFail: () =>
               {
-                  StateStack.Push(new PlayTurn(opponent.pokemon, player.pokemon, 0, () => { }));
+                  var pokemonAlly = BattleUI.Get<Pokemon>("PokemonAlly");
+                  var pokemonOpponent = BattleUI.Get<Pokemon>("PokemonOpponent");
+                  IAMoveSelection IA_moveSelection = new IAMoveSelection(pokemonOpponent, pokemonAlly);
+                  Move IA_move = IA_moveSelection.ChooseAttack();
+                  StateStack.Push(new PlayTurn(opponent.pokemon, player.pokemon, IA_move, () => { }));
               }));
         };
         Action<int> ChangePokemon = (int i) => {
                 actionBar.SetActive(false);
                 StateStack.Pop();
                 StateStack.Push(new ChangePokemon(player, player.GetNextAlivePokemonIndex(), () => {
-                    StateStack.Push(new PlayTurn(opponent.pokemon, player.pokemon, 0, () => { }));
+                    var pokemonAlly = BattleUI.Get<Pokemon>("PokemonAlly");
+                    var pokemonOpponent = BattleUI.Get<Pokemon>("PokemonOpponent");
+                    IAMoveSelection IA_moveSelection = new IAMoveSelection(pokemonOpponent, pokemonAlly);
+                    Move IA_move = IA_moveSelection.ChooseAttack();
+                    StateStack.Push(new PlayTurn(opponent.pokemon, player.pokemon, IA_move, () => { }));
                 }));
         };
         selectArrow.Init(new Action<int>[,] { { SelectMoveAction, ChangePokemon } , { CatchCallback, RunCallback } });

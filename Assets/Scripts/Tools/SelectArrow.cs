@@ -66,7 +66,6 @@ public class SelectArrow : MonoBehaviour
 
     public void Call()
     {
-        // TODO fix crash no attack
         callbacks[cursor.x, cursor.y].Invoke(GetActionIndex(cursor));
     }
 

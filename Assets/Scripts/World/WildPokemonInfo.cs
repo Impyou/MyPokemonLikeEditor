@@ -8,7 +8,9 @@ public class WildPokemonInfo : MonoBehaviour
     [Serializable]
     public struct PokemonEncounterInfo
     {
+        [HideInInspector] public string name;
         public PokemonDefBase pokemonDefBase;
+        public Move[] availableMove;
         public int rate;
         [Range(1, 100)]
         public int pokemonMinLevel;
@@ -26,7 +28,14 @@ public class WildPokemonInfo : MonoBehaviour
 
     private int currentEncounterIndex = 0;
     public List<PokemonDef> generatePokemonEncounter = new List<PokemonDef>();
-    
+
+    public void OnValidate()
+    {
+        for(int i =0;i < pokemonEncounterInfos.Length;i++)
+        {
+            pokemonEncounterInfos[i].name = pokemonEncounterInfos[i].pokemonDefBase.name;
+        }
+    }
 
     public PokemonDef PickPokemon()
     {
@@ -59,9 +68,19 @@ public class WildPokemonInfo : MonoBehaviour
             }
         }
 
-        var newPokemon = selectedEncounterInfo.pokemonDefBase.GeneratePokemonDef(selectedEncounterInfo.PickRandomLevel(), new int[] { 0 });
+        var newPokemon = selectedEncounterInfo.pokemonDefBase.GeneratePokemonDef(selectedEncounterInfo.PickRandomLevel(), SelectRandomMoves(4, selectedEncounterInfo));
         newPokemon.InitNew();
         return newPokemon;
+    }
+
+    public Move[] SelectRandomMoves(int count, PokemonEncounterInfo info)
+    {
+        var moves = new Move[Mathf.Min(count, info.availableMove.Length)];
+        for(int i = 0;i < moves.Length; i++)
+        {
+            moves[i] = info.availableMove[i];
+        }
+        return moves;
     }
 
     public void Start()

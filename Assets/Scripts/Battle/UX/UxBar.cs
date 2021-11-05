@@ -50,7 +50,6 @@ public class UxBar : MonoBehaviour
     public void UpdateData()
     {
         pos = GetScreenPos();
-        Debug.Log($"update data new pos : { pos }");
         fullBarTexture = new Texture2D(1, 1);
         fullBarTexture.wrapMode = TextureWrapMode.Clamp;
         fullBarTexture.SetPixel(1, 1, Color.grey);

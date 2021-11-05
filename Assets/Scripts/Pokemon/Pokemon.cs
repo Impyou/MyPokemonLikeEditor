@@ -15,16 +15,9 @@ public class Pokemon : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public int[] GetMoveIds()
+    public Move[] GetMoves()
     {
-        return def.moveIDs;
-    }
-
-    public void inflictDamage(int damagePower, PokemonDef attacker)
-    {
-        var damage = ((2 * def.level / 5) + 2) * damagePower * attacker.currentStats.attq / (50 * def.currentStats.def) + 2;
-        def.hpCurrent -= damage;
-        def.hpCurrent = Mathf.Max(def.hpCurrent, 0);
+        return def.moves;
     }
 
     public void UpdateHpBar(float newHp)
@@ -116,5 +109,20 @@ public class Pokemon : MonoBehaviour
     {
         var mat = GetComponent<SpriteRenderer>().material;
         gameObject.Tween("PokeBack", 1.57f, 0f, 0.5f, TweenScaleFunctions.Linear, (t) => { mat.SetFloat("_TimeStamp", t.CurrentValue); });
+    }
+
+    public void Heal(int rate)
+    {
+        def.Heal(rate);
+    }
+
+    public void InflictDamage(int damagePower, PokemonDef attacker)
+    {
+        def.InflictDamage(damagePower, attacker);
+    }
+
+    public void ApplyModifier(StatModifier modifier)
+    {
+        def.ApplyModifier(modifier);
     }
 }
